@@ -1,0 +1,25 @@
+% warning = "This file was automatically generated and should not be edited."
+// ${warning}
+%{
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+import os
+import glob
+
+names = sorted([os.path.basename(f) for f in glob.glob("../Tests/CommonMarkSpecTests/*Tests.swift")])
+}%
+
+import XCTest
+
+#if !canImport(ObjectiveC)
+public func allTests() -> [XCTestCaseEntry] {
+    return [
+% for name in names:
+        testCase(${name}.allTests),
+% end
+    ]
+}
+#endif

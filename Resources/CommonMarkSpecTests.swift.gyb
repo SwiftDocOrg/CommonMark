@@ -1,0 +1,48 @@
+% warning = "This file was automatically generated and should not be edited."
+// ${warning}
+%{
+# encoding=utf8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+import json
+
+def indent(text, amount, ch=' '):
+    padding = amount * ch
+    return ''.join(padding+line for line in text.splitlines(True))
+}%
+
+import XCTest
+import CommonMark
+
+final class CommonMarkSpec${filename}Tests: XCTestCase {
+% with open('../Resources/spec/%s.json' % filename) as file:
+    %{ spec = json.load(file) }%
+    % for example in spec:
+        %{
+           number = example['example']
+           markdown = example['markdown']
+           html = example['html'] }%
+    func testExample${number}() throws {
+        let markdown = #######"""
+${indent(markdown, 8)}
+        """#######
+
+        let html = #######"""
+${indent(html, 8)}
+        """#######
+
+        let document = try Document(markdown)
+        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+    }
+
+    % end
+    static var allTests = [
+    % for example in spec:
+        %{ number = example['example'] }%
+        ("testExample${number}", testExample${number}),
+    % end
+    ]
+% end
+}
