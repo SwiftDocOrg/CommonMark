@@ -70,6 +70,32 @@ $ swift test
 	 Executed 649 tests, with 0 failures (0 unexpected) in 0.178 (0.201) seconds
 ```
 
+## Requirements
+
+- Swift 5.1+
+
+## Installation
+
+### Swift Package Manager
+
+Add the CommonMark package to your target dependencies in `Package.swift`:
+
+```swift
+import PackageDescription
+
+let package = Package(
+  name: "YourProject",
+  dependencies: [
+    .package(
+        url: "https://github.com/SwiftDocOrg/CommonMark",
+        from: "0.0.1"
+    ),
+  ]
+)
+```
+
+Then run the `swift build` command to build your project.
+
 ## License
 
 MIT
