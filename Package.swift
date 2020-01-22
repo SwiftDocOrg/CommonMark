@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/apple/swift-cmark.git", .branch("master")),
+        .package(url: "https://github.com/apple/swift-cmark.git", .revision("2a766030bee955b4806044fd7aca1b6884475138")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
