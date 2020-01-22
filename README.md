@@ -4,6 +4,8 @@ A Swift package for parsing and rendering [CommonMark][commonmark].
 It's built on top of [libcmark][cmark] 
 and fully compliant with the [CommonMark Spec][commonmark].
 
+## Usage
+
 ```swift
 import CommonMark
 
@@ -20,23 +22,11 @@ and should act towards one another in a spirit of brotherhood.
 """#
 
 let document = try Document(markdown)
+```
 
+### Inspecting Document Nodes
 
-// Rendering to HTML, XML, LaTeX, and Manpage
-let html = document.render(format: .html) // <h1> [ ... ]
-let xml = document.render(format: .xml) // <?xml [ ... ]
-let latex = document.render(format: .latex) // \section{ [ ... ]
-let manpage = document.render(format: .manpage) // .SH [ ... ]
-
-// To get back CommonMark text, 
-// you can either render with the `.commonmark` format...
-document.render(format: .commonmark) // # [Universal  [ ... ]
-// ...or call `description`
-// (individual nodes also return their CommonMark representation as their description)
-document.description // # [Universal  [ ... ]
-
-
-// Inspecting the document tree
+```swift
 document.children.count // 3
 
 let heading = document.children[0] as! Heading
@@ -60,7 +50,44 @@ paragraph.range.lowerBound // (line: 5, column: 1)
 paragraph.range.upperBound // (line: 7, column: 62)
 ```
 
-### CommonMark Spec Compliance
+
+### Rendering to HTML, XML, LaTeX, and Manpage
+
+```swift
+let html = document.render(format: .html) // <h1> [ ... ]
+let xml = document.render(format: .xml) // <?xml [ ... ]
+let latex = document.render(format: .latex) // \section{ [ ... ]
+let manpage = document.render(format: .manpage) // .SH [ ... ]
+
+// To get back CommonMark text, 
+// you can either render with the `.commonmark` format...
+document.render(format: .commonmark) // # [Universal  [ ... ]
+// ...or call `description`
+// (individual nodes also return their CommonMark representation as their description)
+document.description // # [Universal  [ ... ]
+```
+
+### Creating Documents From Scratch
+
+```swift
+let link = Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/", 
+                title: "View full version", 
+                text: "Universal Declaration of Human Rights")
+let heading = Heading(level: 1, children: [link])
+
+let subheading = Heading(level: 2, text: "Article 1.")
+
+let paragraph = Paragraph(children: #"""
+All human beings are born free and equal in dignity and rights.
+They are endowed with reason and conscience
+and should act towards one another in a spirit of brotherhood.
+"""#.split(separator: "\n")
+    .flatMap { [Text(String($0)), SoftLineBreak()] })
+
+Document(children: [heading, subheading, paragraph]).description == document.description // true
+```
+
+## CommonMark Spec Compliance
 
 This package passes all of the 649 test cases
 in the latest version (0.29) of the [CommonMark Spec][commonmark spec]:
@@ -88,7 +115,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/SwiftDocOrg/CommonMark",
-        from: "0.0.1"
+        from: "0.1.0"
     ),
   ]
 )
