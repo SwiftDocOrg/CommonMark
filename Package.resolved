@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "cmark",
-        "repositoryURL": "https://github.com/apple/swift-cmark.git",
+        "repositoryURL": "https://github.com/SwiftDocOrg/swift-cmark.git",
         "state": {
           "branch": null,
           "revision": "2a766030bee955b4806044fd7aca1b6884475138",
-          "version": null
+          "version": "0.28.3+20200110.2a76603"
         }
       }
     ]
