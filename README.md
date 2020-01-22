@@ -1,6 +1,6 @@
 # CommonMark
 
-A Swift package for parsing and rendering [CommonMark][commonmark].
+A Swift package for working with [CommonMark][commonmark] text.
 It's built on top of [libcmark][cmark] 
 and fully compliant with the [CommonMark Spec][commonmark].
 
