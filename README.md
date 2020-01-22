@@ -50,7 +50,6 @@ paragraph.range.lowerBound // (line: 5, column: 1)
 paragraph.range.upperBound // (line: 7, column: 62)
 ```
 
-
 ### Rendering to HTML, XML, LaTeX, and Manpage
 
 ```swift
@@ -115,7 +114,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/SwiftDocOrg/CommonMark",
-        from: "0.1.0"
+        from: "0.1.1"
     ),
   ]
 )
