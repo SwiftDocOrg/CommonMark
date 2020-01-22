@@ -16,8 +16,23 @@ import cmark
  > concatenating the lines and removing initial and final whitespace.
 */
 public final class Paragraph: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_PARAGRAPH }
+
+    public convenience init(text string: String) {
+        self.init(children: [Text(string)])
+    }
+
+    public convenience init(children: [Inline] = []) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        guard !children.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_PARAGRAPH)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
     }
 }

@@ -2,8 +2,16 @@ import cmark
 
 /// A CommonMark node.
 public class Node {
+    class var cmark_node_type: cmark_node_type {
+        assertionFailure("should be overridden in subclass")
+        return CMARK_NODE_NONE
+    }
+
     /// A pointer to the underlying `cmark_node` for the node.
     let cmark_node: OpaquePointer
+
+    /// Whether the underlying `cmark_node` should be freed upon deallocation.
+    var managed: Bool = false
 
     /**
      Creates a node from a `cmark_node` pointer.
@@ -14,12 +22,14 @@ public class Node {
         self.cmark_node = cmark_node
     }
 
+    deinit {
+        guard managed else { return }
+        cmark_node_free(cmark_node)
+    }
+
     /**
      Creates and returns the `Node` subclass corresponding to
      the type of a `cmark_node` pointer.
-
-     For example,
-     if the `
 
      - Parameter cmark_node: A `cmark_node` pointer.
      - Returns: An instance of a `Node` subclass.
@@ -88,11 +98,15 @@ public class Node {
     }
 }
 
-extension Node: Equatable {}
+// MARK: - Equatable
 
-public func == (lhs: Node, rhs: Node) -> Bool {
-    return cmark_node_get_type(lhs.cmark_node) == cmark_node_get_type(rhs.cmark_node) && cmark_render_commonmark(lhs.cmark_node, 0, 0) == cmark_render_commonmark(rhs.cmark_node, 0, 0)
+extension Node: Equatable {
+    public static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.cmark_node == rhs.cmark_node
+    }
 }
+
+// MARK: - Hashable
 
 extension Node: Hashable {
     public func hash(into hasher: inout Hasher) {

@@ -15,8 +15,15 @@ import cmark
  > The result will be the same in browsers.)
 */
 public final class SoftLineBreak: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_SOFTBREAK }
+
+    public convenience init() {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_SOFTBREAK)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
     }
 }

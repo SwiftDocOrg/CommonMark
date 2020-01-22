@@ -16,30 +16,27 @@ import cmark
  > ## [6.7 Autolinks](https://spec.commonmark.org/0.29/#autolinks)
  */
 public final class Link: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINK }
+    
+    public convenience init(urlString: String, title: String? = nil, text string: String) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.init(urlString: urlString, title: title, children: [Text(string)])
+    }
+
+    public convenience init(urlString: String?, title: String?, children: [Inline]) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.urlString = urlString
+        self.title = title
+        guard !children.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_LINK)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
-    }
-
-    public var urlString: String? {
-        get { return String(cString: cmark_node_get_url(cmark_node)) }
-        set {
-            if let value = newValue {
-                cmark_node_set_url(cmark_node, value)
-            } else {
-                cmark_node_set_url(cmark_node, nil)
-            }
-        }
-    }
-
-    public var title: String? {
-        get { return String(cString: cmark_node_get_title(cmark_node)) }
-        set {
-            if let value = newValue {
-                cmark_node_set_title(cmark_node, value)
-            } else {
-                cmark_node_set_title(cmark_node, nil)
-            }
-        }
     }
 }

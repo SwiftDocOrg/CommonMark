@@ -14,8 +14,16 @@ import cmark
  > so custom tags (and even, say, DocBook tags) may be used.
 */
 public final class HTML: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HTML_INLINE }
+
+    public convenience init(_ literal: String?) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.literal = literal
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_HTML_INLINE)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
     }
 }

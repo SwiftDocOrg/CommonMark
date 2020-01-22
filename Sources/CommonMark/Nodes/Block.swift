@@ -1,11 +1,7 @@
+import cmark
+
 /// A block structure element.
 public protocol Block: Node {}
-
-extension Block {
-    public var children: [Node] {
-        return Array(Children(of: self))
-    }
-}
 
 // MARK: -
 
@@ -27,3 +23,4 @@ extension Paragraph: LeafBlock {}
 extension HTMLBlock: LeafBlock {}
 extension CodeBlock: LeafBlock {}
 extension ThematicBreak: LeafBlock {}
+

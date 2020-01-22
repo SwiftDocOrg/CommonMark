@@ -1,7 +1,7 @@
 import cmark
 
 /// A CommonMark document.
-public final class Document {
+public final class Document: Node {
     /// Options for parsing CommonMark text.
     public struct ParsingOptions: OptionSet {
         public var rawValue: Int32
@@ -46,8 +46,7 @@ public final class Document {
         case invalid
     }
 
-    /// A pointer to the underlying `cmark_node` for the document.
-    let cmark_node: OpaquePointer
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_DOCUMENT }
 
     /**
      Creates a document from a CommonMark string.
@@ -62,16 +61,27 @@ public final class Document {
             throw Error.invalid
         }
 
-        self.cmark_node = cmark_node
+        super.init(cmark_node)
+        self.managed = true
+    }
+
+    public convenience init(children: [Block] = []) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        guard !children.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+
+    required init(_ cmark_node: OpaquePointer) {
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
+        super.init(cmark_node)
     }
 
     /// The children of the document.
     public var children: [Node] {
         return Array(Children(of: self))
-    }
-
-    deinit {
-        cmark_node_free(cmark_node)
     }
 
     // MARK: - Rendering
@@ -181,14 +191,6 @@ public final class Document {
 extension Document.Position: Comparable {
     public static func < (lhs: Document.Position, rhs: Document.Position) -> Bool {
         return lhs.line < rhs.line || (lhs.line == rhs.line && lhs.column < rhs.column)
-    }
-}
-
-// MARK: - CustomStringConvertible
-
-extension Document: CustomStringConvertible {
-    public var description: String {
-        return String(cString: cmark_render_commonmark(cmark_node, 0, 0))
     }
 }
 

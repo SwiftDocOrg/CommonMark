@@ -25,8 +25,17 @@ import cmark
  > indented no more than three spaces.
  */
 public final class CodeBlock: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE_BLOCK }
+
+    public convenience init(_ literal: String? = nil, fenceInfo: String? = nil) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.literal = literal
+        self.fenceInfo = fenceInfo
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_CODE_BLOCK)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
     }
 
@@ -36,11 +45,7 @@ public final class CodeBlock: Node {
         }
 
         set {
-            if let value = newValue {
-                cmark_node_set_fence_info(cmark_node, value)
-            } else {
-                cmark_node_set_fence_info(cmark_node, nil)
-            }
+            cmark_node_set_fence_info(cmark_node, newValue)
         }
     }
 }

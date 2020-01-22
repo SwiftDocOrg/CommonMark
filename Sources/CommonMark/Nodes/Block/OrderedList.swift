@@ -20,14 +20,66 @@ import cmark
  > with 10 digits we start seeing integer overflows in some browsers.)
 */
 public final class OrderedList: Node {
+    public enum Delimiter {
+        case period
+        case parenthesis
+
+        init?(rawValue: cmark_delim_type) {
+            switch rawValue {
+            case CMARK_PERIOD_DELIM:
+                self = .period
+            case CMARK_PAREN_DELIM:
+                self = .parenthesis
+            default:
+                return nil
+            }
+        }
+
+        var rawValue: cmark_delim_type {
+            switch self {
+            case .period:
+                return CMARK_PERIOD_DELIM
+            case .parenthesis:
+                return CMARK_PAREN_DELIM
+            }
+        }
+    }
+
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LIST }
+
+    public convenience init(listStart: Int = 1, delimiter: Delimiter = .period, items: [ListItem] = []) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.listStart = listStart
+        guard !items.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_LIST)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         precondition(cmark_node_get_list_type(cmark_node) == CMARK_ORDERED_LIST)
         super.init(cmark_node)
     }
 
+    public var delimiter: Delimiter {
+        get {
+            return Delimiter(rawValue: cmark_node_get_list_delim(cmark_node))!
+        }
+
+        set {
+            cmark_node_set_list_delim(cmark_node, newValue.rawValue)
+        }
+    }
+
     public var listStart: Int {
-        get { return Int(cmark_node_get_list_start(cmark_node)) }
-        set { cmark_node_set_list_start(cmark_node, Int32(newValue)) }
+        get {
+            return numericCast(cmark_node_get_list_start(cmark_node))
+        }
+
+        set {
+            cmark_node_set_list_start(cmark_node, numericCast(newValue))
+        }
     }
 }

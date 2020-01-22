@@ -11,13 +11,9 @@ extension Literal {
         get {
             return String(cString: cmark_node_get_literal(cmark_node))
         }
-
+        
         set {
-            if let value = newValue {
-                cmark_node_set_literal(cmark_node, value)
-            } else {
-                cmark_node_set_literal(cmark_node, nil)
-            }
+            cmark_node_set_literal(cmark_node, newValue)
         }
     }
 }

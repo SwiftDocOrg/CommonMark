@@ -8,30 +8,17 @@ import cmark
  > ## [6.6 Images](https://spec.commonmark.org/0.29/#images)
 */
 public final class Image: Node {
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_IMAGE }
+
+    public convenience init(urlString: String, title: String? = nil) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.managed = true
+        self.urlString = urlString
+        self.title = title
+    }
+
     required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == CMARK_NODE_IMAGE)
+        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
         super.init(cmark_node)
-    }
-
-    public var urlString: String? {
-        get { return String(cString: cmark_node_get_url(cmark_node)) }
-        set {
-            if let value = newValue {
-                cmark_node_set_url(cmark_node, value)
-            } else {
-                cmark_node_set_url(cmark_node, nil)
-            }
-        }
-    }
-
-    public var title: String? {
-        get { return String(cString: cmark_node_get_title(cmark_node)) }
-        set {
-            if let value = newValue {
-                cmark_node_set_title(cmark_node, value)
-            } else {
-                cmark_node_set_title(cmark_node, nil)
-            }
-        }
     }
 }
