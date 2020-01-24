@@ -11,6 +11,10 @@ let package = Package(
             name: "CommonMark",
             targets: ["CommonMark"]
         ),
+        .library(
+            name: "CommonMarkBuilder",
+            targets: ["CommonMarkBuilder"]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
