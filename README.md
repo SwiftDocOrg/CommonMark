@@ -149,7 +149,7 @@ let package = Package(
   dependencies: [
     .package(
         url: "https://github.com/SwiftDocOrg/CommonMark",
-        from: "0.1.2"
+        from: "0.2.0"
     ),
   ]
 )
