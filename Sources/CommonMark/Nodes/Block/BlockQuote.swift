@@ -12,19 +12,13 @@ import cmark
  > or (b) a single character > not followed by a space.
  */
 public final class BlockQuote: Node {
-    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_BLOCK_QUOTE }
+    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_BLOCK_QUOTE }
 
-    public convenience init(children: [Block] = []) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
+    public convenience init(children: [Child] = []) {
+        self.init()
         guard !children.isEmpty else { return }
         for child in children {
             append(child: child)
         }
-    }
-
-    required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
-        super.init(cmark_node)
     }
 }

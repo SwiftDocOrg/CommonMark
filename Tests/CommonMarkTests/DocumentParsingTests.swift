@@ -8,7 +8,7 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(document.children.count, 3)
 
         let heading = document.children[0] as! Heading
-        XCTAssertEqual(heading.headerLevel, 1)
+        XCTAssertEqual(heading.level, 1)
         XCTAssertEqual(heading.children.count, 1)
 
         let link = heading.children[0] as! Link
@@ -16,7 +16,7 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(link.title, "View full version")
 
         let subheading = document.children[1] as! Heading
-        XCTAssertEqual(subheading.headerLevel, 2)
+        XCTAssertEqual(subheading.level, 2)
         XCTAssertEqual(subheading.children.count, 1)
 
         let subheadingText = subheading.children[0] as! Text

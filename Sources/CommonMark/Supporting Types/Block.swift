@@ -1,7 +1,7 @@
 import cmark
 
 /// A block structure element.
-public protocol Block: Node {}
+public protocol Block {}
 
 // MARK: -
 
@@ -9,9 +9,8 @@ public protocol Block: Node {}
 public protocol ContainerBlock: Block {}
 
 extension BlockQuote: ContainerBlock {}
-extension BulletList: ContainerBlock {}
-extension OrderedList: ContainerBlock {}
-extension ListItem: ContainerBlock {}
+extension List: ContainerBlock {}
+extension List.Item: ContainerBlock {}
 
 // MARK: -
 

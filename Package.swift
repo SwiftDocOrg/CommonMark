@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/SwiftDocOrg/swift-cmark.git", from: Version(0, 28, 3, prereleaseIdentifiers: [], buildMetadataIdentifiers: ["20200110", "2a76603"]))
+        .package(url: "https://github.com/SwiftDocOrg/swift-cmark.git", from: Version(0, 28, 3, prereleaseIdentifiers: [], buildMetadataIdentifiers: ["20200110", "2a76603"])),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -23,6 +23,10 @@ let package = Package(
             name: "CommonMark",
             dependencies: ["cmark"]
         ),
+        .target(
+            name: "CommonMarkBuilder",
+            dependencies: ["CommonMark"]
+        ),
         .testTarget(
             name: "CommonMarkTests",
             dependencies: ["CommonMark"]
@@ -30,6 +34,10 @@ let package = Package(
         .testTarget(
             name: "CommonMarkSpecTests",
             dependencies: ["CommonMark"]
+        ),
+        .testTarget(
+            name: "CommonMarkBuilderTests",
+            dependencies: ["CommonMarkBuilder", "CommonMark" /* , "CommonMarkTests" */ ]
         ),
     ]
 )

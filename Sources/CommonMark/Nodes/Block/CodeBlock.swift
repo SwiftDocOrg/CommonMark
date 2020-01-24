@@ -25,18 +25,17 @@ import cmark
  > indented no more than three spaces.
  */
 public final class CodeBlock: Node {
-    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE_BLOCK }
+    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE_BLOCK }
 
-    public convenience init(_ literal: String? = nil, fenceInfo: String? = nil) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
+    public convenience init(literal: String? = nil) {
+        self.init()
         self.literal = literal
-        self.fenceInfo = fenceInfo
     }
 
-    required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
-        super.init(cmark_node)
+    public convenience init(literal: String, fenceInfo: String? = nil) {
+        self.init()
+        self.literal = literal
+        self.fenceInfo = fenceInfo
     }
 
     public var fenceInfo: String? {

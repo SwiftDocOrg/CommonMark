@@ -1,7 +1,9 @@
 import cmark
 
 /// An element with literal contents.
-public protocol Literal: Node {}
+public protocol Literal: Node {
+    init(literal: String?)
+}
 
 // MARK: -
 
@@ -17,6 +19,7 @@ extension Literal {
         }
     }
 }
+
 
 // MARK: -
 

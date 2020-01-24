@@ -34,30 +34,24 @@ import cmark
  > thematic break, list item, or HTML block.
  */
 public final class Heading: Node {
-    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HEADING }
+    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HEADING }
 
     static let levelRange: ClosedRange<Int> = 1...6
 
-    public convenience init(level: Int, text string: String? = nil) {
-        self.init(level: level, children: [Text(string)])
+    public convenience init(level: Int, text string: String) {
+        self.init(level: level, children: [Text(literal: string)])
     }
 
-    public convenience init(level: Int, children: [Inline] = []) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
-        self.headerLevel = level
+    public convenience init(level: Int, children: [Child] = []) {
+        self.init()
+        self.level = level
         guard !children.isEmpty else { return }
         for child in children {
             append(child: child)
         }
     }
 
-    required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
-        super.init(cmark_node)
-    }
-
-    public var headerLevel: Int {
+    public var level: Int {
         get {
             return numericCast(cmark_node_get_heading_level(cmark_node))
         }

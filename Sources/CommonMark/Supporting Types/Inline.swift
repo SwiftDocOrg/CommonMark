@@ -1,5 +1,5 @@
 /// An inline content element.
-public protocol Inline: Node {}
+public protocol Inline {}
 
 // MARK: -
 

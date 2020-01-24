@@ -8,12 +8,11 @@ final class DocumentCreationTests: XCTestCase {
 
         let subheading = Heading(level: 2, text: "Article 1.")
 
-        let paragraph = Paragraph(children: #"""
+        let paragraph = Paragraph(text: #"""
         All human beings are born free and equal in dignity and rights.
         They are endowed with reason and conscience
         and should act towards one another in a spirit of brotherhood.
-        """#.split(separator: "\n")
-            .flatMap { [Text(String($0)), SoftLineBreak()] })
+        """#, replacingNewLinesWithBreaks: true)
 
         let document = Document(children: [heading, subheading, paragraph])
 

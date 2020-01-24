@@ -16,27 +16,19 @@ import cmark
  > ## [6.7 Autolinks](https://spec.commonmark.org/0.29/#autolinks)
  */
 public final class Link: Node {
-    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINK }
+    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINK }
     
     public convenience init(urlString: String, title: String? = nil, text string: String) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
-        self.init(urlString: urlString, title: title, children: [Text(string)])
+        self.init(urlString: urlString, title: title, children: [Text(literal: string)])
     }
 
-    public convenience init(urlString: String?, title: String?, children: [Inline]) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
+    public convenience init(urlString: String?, title: String?, children: [Child] = []) {
+        self.init()
         self.urlString = urlString
         self.title = title
         guard !children.isEmpty else { return }
         for child in children {
             append(child: child)
         }
-    }
-
-    required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
-        super.init(cmark_node)
     }
 }

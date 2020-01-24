@@ -1,25 +1,36 @@
 import cmark
 
 /// A CommonMark node.
-public class Node {
-    class var cmark_node_type: cmark_node_type {
+open class Node {
+    public class var cmark_node_type: cmark_node_type {
         assertionFailure("should be overridden in subclass")
         return CMARK_NODE_NONE
     }
 
     /// A pointer to the underlying `cmark_node` for the node.
-    let cmark_node: OpaquePointer
+    public final let cmark_node: OpaquePointer
 
     /// Whether the underlying `cmark_node` should be freed upon deallocation.
-    var managed: Bool = false
+    public var managed: Bool = false
 
     /**
      Creates a node from a `cmark_node` pointer.
 
      - Parameter cmark_node: A `cmark_node` pointer.
      */
-    required init(_ cmark_node: OpaquePointer) {
+    init(_ cmark_node: OpaquePointer) {
         self.cmark_node = cmark_node
+        assert(type(of: self) != Node.self)
+        assert(cmark_node_get_type(cmark_node) == type(of: self).cmark_node_type)
+    }
+
+    convenience init(nonrecursively: Void) {
+        self.init()
+    }
+
+    convenience init() {
+        self.init(cmark_node_new(type(of: self).cmark_node_type))
+        self.managed = true
     }
 
     deinit {
@@ -43,14 +54,14 @@ public class Node {
         case CMARK_NODE_LIST:
             switch cmark_node_get_list_type(cmark_node) {
             case CMARK_BULLET_LIST:
-                return BulletList(cmark_node)
+                return List(cmark_node)
             case CMARK_ORDERED_LIST:
-                return OrderedList(cmark_node)
+                return List(cmark_node)
             default:
                 return nil
             }
         case CMARK_NODE_ITEM:
-            return ListItem(cmark_node)
+            return List.Item(cmark_node)
         case CMARK_NODE_CODE_BLOCK:
             return CodeBlock(cmark_node)
         case CMARK_NODE_HTML_BLOCK:

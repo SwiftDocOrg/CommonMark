@@ -46,7 +46,7 @@ public final class Document: Node {
         case invalid
     }
 
-    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_DOCUMENT }
+    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_DOCUMENT }
 
     /**
      Creates a document from a CommonMark string.
@@ -56,32 +56,20 @@ public final class Document: Node {
         - `Document.Error.invalid`
           if a document couldn't be constructed with the provided source.
      */
-    public init(_ commonmark: String, options: ParsingOptions = []) throws {
+    public convenience init(_ commonmark: String, options: ParsingOptions = []) throws {
         guard let cmark_node = cmark_parse_document(commonmark, commonmark.utf8.count, 0) else {
             throw Error.invalid
         }
 
-        super.init(cmark_node)
-        self.managed = true
+        self.init(cmark_node)
     }
 
-    public convenience init(children: [Block] = []) {
-        self.init(cmark_node_new(Self.cmark_node_type))
-        self.managed = true
+    public convenience init(children: [Child] = []) {
+        self.init()
         guard !children.isEmpty else { return }
         for child in children {
             append(child: child)
         }
-    }
-
-    required init(_ cmark_node: OpaquePointer) {
-        precondition(cmark_node_get_type(cmark_node) == Self.cmark_node_type)
-        super.init(cmark_node)
-    }
-
-    /// The children of the document.
-    public var children: [Node] {
-        return Array(Children(of: self))
     }
 
     // MARK: - Rendering
