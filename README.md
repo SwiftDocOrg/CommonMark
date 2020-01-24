@@ -68,6 +68,41 @@ document.description // # [Universal  [ ... ]
 
 ### Creating Documents From Scratch
 
+#### Using Function Builders
+
+To use this interface,
+add `"CommonMarkBuilder"` to your package's dependencies
+and replace `import CommonMark` with `import CommonMarkBuilder`
+as needed.
+
+```swift
+import CommonMarkBuilder
+
+let document = Document {
+    Heading {
+        Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/" as String?,
+                title: "View full version" as String?) // explicit type annotations to work around apparent compiler bug
+        {
+            "Universal Declaration of Human Rights"
+        }
+    }
+
+    Section { // sections increase the level of contained headings
+        Heading { "Article 1." } // this is a second-level heading
+    }
+
+    Fragment { // fragments embed rendered CommonMark text
+        """
+        **All** human beings are born free and equal in dignity and rights.
+        They are endowed with reason and conscience
+        and should act towards one another in a spirit of brotherhood.
+        """
+    }
+}
+```
+
+#### Using the Conventional Approach
+
 ```swift
 let link = Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/", 
                 title: "View full version", 
