@@ -42,7 +42,7 @@ public final class Heading: Node {
         self.init(level: level, children: [Text(literal: string)])
     }
 
-    public convenience init(level: Int, children: [Child] = []) {
+    public convenience init(level: Int, children: [Inline & Node] = []) {
         self.init()
         self.level = level
         guard !children.isEmpty else { return }

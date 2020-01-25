@@ -64,7 +64,7 @@ public final class Document: Node {
         self.init(cmark_node)
     }
 
-    public convenience init(children: [Child] = []) {
+    public convenience init(children: [Block & Node] = []) {
         self.init()
         guard !children.isEmpty else { return }
         for child in children {

@@ -14,7 +14,7 @@ public final class Emphasis: Node {
         self.init(children: [Text(literal: string)])
     }
 
-    public convenience init(children: [Child] = []) {
+    public convenience init(children: [Inline & Node] = []) {
         self.init()
         guard !children.isEmpty else { return }
         for child in children {

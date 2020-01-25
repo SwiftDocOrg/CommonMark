@@ -22,7 +22,7 @@ public final class Link: Node {
         self.init(urlString: urlString, title: title, children: [Text(literal: string)])
     }
 
-    public convenience init(urlString: String?, title: String?, children: [Child] = []) {
+    public convenience init(urlString: String?, title: String?, children: [Inline & Node] = []) {
         self.init()
         self.urlString = urlString
         self.title = title

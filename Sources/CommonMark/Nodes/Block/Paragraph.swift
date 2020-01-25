@@ -19,7 +19,7 @@ public final class Paragraph: Node {
     public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_PARAGRAPH }
 
     public convenience init(text string: String, replacingNewLinesWithBreaks: Bool = true) {
-        let children: [Node & Inline]
+        let children: [Inline & Node]
         if replacingNewLinesWithBreaks {
             children = string.split(separator: "\n", omittingEmptySubsequences: false)
                              .flatMap { ($0.isEmpty ? [HardLineBreak()] : [Text(literal: "\($0)"), SoftLineBreak()]) }
@@ -30,7 +30,7 @@ public final class Paragraph: Node {
         self.init(children: children)
     }
 
-    public convenience init(children: [Child] = []) {
+    public convenience init(children: [Inline & Node] = []) {
         self.init()
         guard !children.isEmpty else { return }
         for child in children {

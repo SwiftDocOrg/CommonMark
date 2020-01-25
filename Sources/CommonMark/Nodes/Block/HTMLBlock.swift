@@ -18,7 +18,7 @@ public final class HTMLBlock: Node {
         self.literal = literal
     }
 
-    public convenience init(literal: String, children: [Child] = []) {
+    public convenience init(literal: String, children: [Inline & Node] = []) {
         self.init()
         guard !children.isEmpty else { return }
         for child in children {
