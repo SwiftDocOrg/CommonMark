@@ -181,11 +181,3 @@ extension Document.Position: Comparable {
         return lhs.line < rhs.line || (lhs.line == rhs.line && lhs.column < rhs.column)
     }
 }
-
-// MARK: - CustomReflectable
-
-extension Document: CustomReflectable {
-    public var customMirror: Mirror {
-        return Mirror(self, unlabeledChildren: children)
-    }
-}
