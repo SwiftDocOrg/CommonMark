@@ -1,9 +1,9 @@
 import CommonMark
 
-public struct Section: Block {
-    var children: [Block] = []
+public struct Section {
+    public var children: [Block & Node] = []
 
-    init(children: [Block]) {
+    init(children: [Block & Node]) {
         self.children = children
     }
 
@@ -20,10 +20,6 @@ public struct Section: Block {
 
 extension Section: BlockConvertible {
     public var blockValue: [Block & Node] {
-        children.compactMap{ $0 as? Block & Node}
+        return children
     }
 }
-
-
-
-

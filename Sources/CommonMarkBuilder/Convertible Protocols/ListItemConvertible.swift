@@ -29,9 +29,3 @@ extension List.Item: ListItemConvertible {
         return [self]
     }
 }
-
-extension Fragment: ListItemConvertible {
-    public var listItemValue: [List.Item] {
-        return children as? [List.Item] ?? [List.Item(children: children)]
-    }
-}
