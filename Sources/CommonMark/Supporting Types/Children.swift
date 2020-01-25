@@ -48,7 +48,6 @@ fileprivate func add<Child: Node>(_ child: Child, with operation: () -> Int32) -
         assertionFailure("unexpected status code: \(status)")
         return false
     }
-
 }
 
 // MARK: -
@@ -57,7 +56,6 @@ public protocol ContainerOfBlocks: Node {}
 
 extension Document: ContainerOfBlocks {}
 extension BlockQuote: ContainerOfBlocks {}
-extension List.Item: ContainerOfBlocks {}
 
 extension ContainerOfBlocks {
     /// The block's children.
@@ -323,5 +321,91 @@ extension List {
          cmark_node_unlink(child.cmark_node)
          child.managed = true
          return true
+    }
+}
+
+// MARK: -
+
+extension List.Item {
+    /// The list item's children.
+    public var children: [Node] {
+        get {
+            return Children(of: self).map { $0 }
+        }
+
+        set {
+            for child in children {
+                remove(child: child)
+            }
+
+            for child in newValue {
+                append(child: child)
+            }
+        }
+    }
+
+    /**
+     Adds a node to the beginning of the list item's children.
+
+     - Parameters:
+        - child: The block to add.
+     - Returns: `true` if successful, otherwise `false`.
+     */
+    @discardableResult
+    public func prepend(child: Node) -> Bool {
+        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
+    }
+
+    /**
+     Adds a node to the end of the list item's children.
+
+     - Parameters:
+        - child: The block to add.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func append(child: Node) -> Bool {
+        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
+    }
+
+    /**
+     Inserts a node to the list item's children before a specified sibling.
+
+     - Parameters:
+        - child: The block to add.
+        - sibling: The child before which the block is added
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func insert(child: Node, before sibling: Node) -> Bool {
+        return add(child) { cmark_node_insert_before(child.cmark_node, sibling.cmark_node) }
+    }
+
+    /**
+     Inserts a node to the list item's children after a specified sibling.
+
+     - Parameters:
+        - child: The block to add.
+        - sibling: The child after which the block is added
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func insert(child: Node, after sibling: Node) -> Bool {
+        return add(child) { cmark_node_insert_after(child.cmark_node, sibling.cmark_node) }
+    }
+
+    /**
+     Removes a node from the list item's children.
+
+     - Parameters:
+        - child: The block to remove.
+     - Returns: `true` if successful, otherwise `false`.
+     */
+    @discardableResult
+    public func remove(child: Node) -> Bool {
+        guard child.parent == self else { return false }
+        cmark_node_unlink(child.cmark_node)
+        child.managed = true
+        return true
     }
 }

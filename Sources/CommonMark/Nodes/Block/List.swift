@@ -45,6 +45,14 @@ public final class List: Node {
     public final class Item: Node {
         public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
 
+        public convenience init(children: [Inline & Node] = []) {
+            self.init()
+            guard !children.isEmpty else { return }
+            for child in children {
+                append(child: child)
+            }
+        }
+
         public convenience init(children: [Block & Node] = []) {
             self.init()
             guard !children.isEmpty else { return }
