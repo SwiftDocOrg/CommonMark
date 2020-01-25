@@ -46,11 +46,7 @@ public final class List: Node {
         public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
 
         public convenience init(children: [Inline & Node] = []) {
-            self.init()
-            guard !children.isEmpty else { return }
-            for child in children {
-                append(child: child)
-            }
+            self.init(children: [Paragraph(children: children)])
         }
 
         public convenience init(children: [Block & Node] = []) {
