@@ -1,10 +1,12 @@
 import XCTest
 
+import CommonMarkBuilderTests
+import CommonMarkSpecTests
 import CommonMarkTests
 
 var tests = [XCTestCaseEntry]()
-tests += CommonMarkTests.allTests()
-tests += DocumentCreationTests.allTests()
-tests += DocumentParsingTests.allTests()
-tests += DocumentRenderingTests.allTests()
+tests += CommonMarkBuilderTests.__allTests()
+tests += CommonMarkSpecTests.__allTests()
+tests += CommonMarkTests.__allTests()
+
 XCTMain(tests)
