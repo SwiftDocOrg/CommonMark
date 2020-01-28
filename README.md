@@ -1,5 +1,7 @@
 # CommonMark
 
+![CI][ci badge]
+
 A Swift package for working with [CommonMark][commonmark] text.
 It's built on top of [libcmark][cmark] 
 and fully compliant with the [CommonMark Spec][commonmark].
@@ -168,3 +170,5 @@ Mattt ([@mattt](https://twitter.com/mattt))
 [cmark]: https://github.com/commonmark/cmark
 [commonmark]: https://commonmark.org
 [commonmark spec]: https://spec.commonmark.org
+
+[ci badge]: https://github.com/SwiftDocOrg/SwiftSemantics/workflows/CI/badge.svg
