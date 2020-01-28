@@ -249,21 +249,4 @@ final class CommonMarkSpecHardLineBreaksTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample630", testExample630),
-        ("testExample631", testExample631),
-        ("testExample632", testExample632),
-        ("testExample633", testExample633),
-        ("testExample634", testExample634),
-        ("testExample635", testExample635),
-        ("testExample636", testExample636),
-        ("testExample637", testExample637),
-        ("testExample638", testExample638),
-        ("testExample639", testExample639),
-        ("testExample640", testExample640),
-        ("testExample641", testExample641),
-        ("testExample642", testExample642),
-        ("testExample643", testExample643),
-        ("testExample644", testExample644),
-    ]
 }

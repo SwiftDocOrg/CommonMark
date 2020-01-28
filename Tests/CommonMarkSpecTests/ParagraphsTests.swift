@@ -151,14 +151,4 @@ final class CommonMarkSpecParagraphsTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample189", testExample189),
-        ("testExample190", testExample190),
-        ("testExample191", testExample191),
-        ("testExample192", testExample192),
-        ("testExample193", testExample193),
-        ("testExample194", testExample194),
-        ("testExample195", testExample195),
-        ("testExample196", testExample196),
-    ]
 }

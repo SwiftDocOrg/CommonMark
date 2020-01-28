@@ -334,27 +334,4 @@ final class CommonMarkSpecRawHtmlTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample609", testExample609),
-        ("testExample610", testExample610),
-        ("testExample611", testExample611),
-        ("testExample612", testExample612),
-        ("testExample613", testExample613),
-        ("testExample614", testExample614),
-        ("testExample615", testExample615),
-        ("testExample616", testExample616),
-        ("testExample617", testExample617),
-        ("testExample618", testExample618),
-        ("testExample619", testExample619),
-        ("testExample620", testExample620),
-        ("testExample621", testExample621),
-        ("testExample622", testExample622),
-        ("testExample623", testExample623),
-        ("testExample624", testExample624),
-        ("testExample625", testExample625),
-        ("testExample626", testExample626),
-        ("testExample627", testExample627),
-        ("testExample628", testExample628),
-        ("testExample629", testExample629),
-    ]
 }

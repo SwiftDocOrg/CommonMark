@@ -518,31 +518,4 @@ final class CommonMarkSpecBlockQuotesTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample198", testExample198),
-        ("testExample199", testExample199),
-        ("testExample200", testExample200),
-        ("testExample201", testExample201),
-        ("testExample202", testExample202),
-        ("testExample203", testExample203),
-        ("testExample204", testExample204),
-        ("testExample205", testExample205),
-        ("testExample206", testExample206),
-        ("testExample207", testExample207),
-        ("testExample208", testExample208),
-        ("testExample209", testExample209),
-        ("testExample210", testExample210),
-        ("testExample211", testExample211),
-        ("testExample212", testExample212),
-        ("testExample213", testExample213),
-        ("testExample214", testExample214),
-        ("testExample215", testExample215),
-        ("testExample216", testExample216),
-        ("testExample217", testExample217),
-        ("testExample218", testExample218),
-        ("testExample219", testExample219),
-        ("testExample220", testExample220),
-        ("testExample221", testExample221),
-        ("testExample222", testExample222),
-    ]
 }

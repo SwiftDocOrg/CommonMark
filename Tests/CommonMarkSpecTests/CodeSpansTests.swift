@@ -343,28 +343,4 @@ final class CommonMarkSpecCodeSpansTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample328", testExample328),
-        ("testExample329", testExample329),
-        ("testExample330", testExample330),
-        ("testExample331", testExample331),
-        ("testExample332", testExample332),
-        ("testExample333", testExample333),
-        ("testExample334", testExample334),
-        ("testExample335", testExample335),
-        ("testExample336", testExample336),
-        ("testExample337", testExample337),
-        ("testExample338", testExample338),
-        ("testExample339", testExample339),
-        ("testExample340", testExample340),
-        ("testExample341", testExample341),
-        ("testExample342", testExample342),
-        ("testExample343", testExample343),
-        ("testExample344", testExample344),
-        ("testExample345", testExample345),
-        ("testExample346", testExample346),
-        ("testExample347", testExample347),
-        ("testExample348", testExample348),
-        ("testExample349", testExample349),
-    ]
 }

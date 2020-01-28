@@ -38,8 +38,4 @@ final class CommonMarkSpecSoftLineBreaksTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample645", testExample645),
-        ("testExample646", testExample646),
-    ]
 }

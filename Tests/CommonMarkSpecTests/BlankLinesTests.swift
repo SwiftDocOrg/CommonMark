@@ -27,7 +27,4 @@ final class CommonMarkSpecBlankLinesTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample197", testExample197),
-    ]
 }

@@ -19,7 +19,4 @@ final class CommonMarkSpecInlinesTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample297", testExample297),
-    ]
 }

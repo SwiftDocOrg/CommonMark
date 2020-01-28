@@ -339,25 +339,4 @@ final class CommonMarkSpecThematicBreaksTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample13", testExample13),
-        ("testExample14", testExample14),
-        ("testExample15", testExample15),
-        ("testExample16", testExample16),
-        ("testExample17", testExample17),
-        ("testExample18", testExample18),
-        ("testExample19", testExample19),
-        ("testExample20", testExample20),
-        ("testExample21", testExample21),
-        ("testExample22", testExample22),
-        ("testExample23", testExample23),
-        ("testExample24", testExample24),
-        ("testExample25", testExample25),
-        ("testExample26", testExample26),
-        ("testExample27", testExample27),
-        ("testExample28", testExample28),
-        ("testExample29", testExample29),
-        ("testExample30", testExample30),
-        ("testExample31", testExample31),
-    ]
 }

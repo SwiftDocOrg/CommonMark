@@ -212,17 +212,4 @@ final class CommonMarkSpecTabsTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample1", testExample1),
-        ("testExample2", testExample2),
-        ("testExample3", testExample3),
-        ("testExample4", testExample4),
-        ("testExample5", testExample5),
-        ("testExample6", testExample6),
-        ("testExample7", testExample7),
-        ("testExample8", testExample8),
-        ("testExample9", testExample9),
-        ("testExample10", testExample10),
-        ("testExample11", testExample11),
-    ]
 }

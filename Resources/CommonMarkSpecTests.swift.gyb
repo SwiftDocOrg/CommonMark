@@ -38,11 +38,5 @@ ${indent(html, 8)}
     }
 
     % end
-    static var allTests = [
-    % for example in spec:
-        %{ number = example['example'] }%
-        ("testExample${number}", testExample${number}),
-    % end
-    ]
 % end
 }

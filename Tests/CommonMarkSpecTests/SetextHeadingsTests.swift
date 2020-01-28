@@ -530,33 +530,4 @@ final class CommonMarkSpecSetextHeadingsTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample50", testExample50),
-        ("testExample51", testExample51),
-        ("testExample52", testExample52),
-        ("testExample53", testExample53),
-        ("testExample54", testExample54),
-        ("testExample55", testExample55),
-        ("testExample56", testExample56),
-        ("testExample57", testExample57),
-        ("testExample58", testExample58),
-        ("testExample59", testExample59),
-        ("testExample60", testExample60),
-        ("testExample61", testExample61),
-        ("testExample62", testExample62),
-        ("testExample63", testExample63),
-        ("testExample64", testExample64),
-        ("testExample65", testExample65),
-        ("testExample66", testExample66),
-        ("testExample67", testExample67),
-        ("testExample68", testExample68),
-        ("testExample69", testExample69),
-        ("testExample70", testExample70),
-        ("testExample71", testExample71),
-        ("testExample72", testExample72),
-        ("testExample73", testExample73),
-        ("testExample74", testExample74),
-        ("testExample75", testExample75),
-        ("testExample76", testExample76),
-    ]
 }

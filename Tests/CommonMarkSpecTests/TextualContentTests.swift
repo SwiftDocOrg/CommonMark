@@ -49,9 +49,4 @@ final class CommonMarkSpecTextualContentTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample647", testExample647),
-        ("testExample648", testExample648),
-        ("testExample649", testExample649),
-    ]
 }

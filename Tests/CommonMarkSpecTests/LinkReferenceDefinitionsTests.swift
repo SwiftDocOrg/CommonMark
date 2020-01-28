@@ -516,34 +516,4 @@ final class CommonMarkSpecLinkReferenceDefinitionsTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample161", testExample161),
-        ("testExample162", testExample162),
-        ("testExample163", testExample163),
-        ("testExample164", testExample164),
-        ("testExample165", testExample165),
-        ("testExample166", testExample166),
-        ("testExample167", testExample167),
-        ("testExample168", testExample168),
-        ("testExample169", testExample169),
-        ("testExample170", testExample170),
-        ("testExample171", testExample171),
-        ("testExample172", testExample172),
-        ("testExample173", testExample173),
-        ("testExample174", testExample174),
-        ("testExample175", testExample175),
-        ("testExample176", testExample176),
-        ("testExample177", testExample177),
-        ("testExample178", testExample178),
-        ("testExample179", testExample179),
-        ("testExample180", testExample180),
-        ("testExample181", testExample181),
-        ("testExample182", testExample182),
-        ("testExample183", testExample183),
-        ("testExample184", testExample184),
-        ("testExample185", testExample185),
-        ("testExample186", testExample186),
-        ("testExample187", testExample187),
-        ("testExample188", testExample188),
-    ]
 }

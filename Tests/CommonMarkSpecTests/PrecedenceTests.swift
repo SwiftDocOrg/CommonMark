@@ -23,7 +23,4 @@ final class CommonMarkSpecPrecedenceTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample12", testExample12),
-    ]
 }

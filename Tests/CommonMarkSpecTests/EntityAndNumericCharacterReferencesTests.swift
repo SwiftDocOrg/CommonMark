@@ -284,23 +284,4 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample311", testExample311),
-        ("testExample312", testExample312),
-        ("testExample313", testExample313),
-        ("testExample314", testExample314),
-        ("testExample315", testExample315),
-        ("testExample316", testExample316),
-        ("testExample317", testExample317),
-        ("testExample318", testExample318),
-        ("testExample319", testExample319),
-        ("testExample320", testExample320),
-        ("testExample321", testExample321),
-        ("testExample322", testExample322),
-        ("testExample323", testExample323),
-        ("testExample324", testExample324),
-        ("testExample325", testExample325),
-        ("testExample326", testExample326),
-        ("testExample327", testExample327),
-    ]
 }

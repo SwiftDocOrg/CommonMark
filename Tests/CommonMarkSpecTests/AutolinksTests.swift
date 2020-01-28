@@ -289,25 +289,4 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample590", testExample590),
-        ("testExample591", testExample591),
-        ("testExample592", testExample592),
-        ("testExample593", testExample593),
-        ("testExample594", testExample594),
-        ("testExample595", testExample595),
-        ("testExample596", testExample596),
-        ("testExample597", testExample597),
-        ("testExample598", testExample598),
-        ("testExample599", testExample599),
-        ("testExample600", testExample600),
-        ("testExample601", testExample601),
-        ("testExample602", testExample602),
-        ("testExample603", testExample603),
-        ("testExample604", testExample604),
-        ("testExample605", testExample605),
-        ("testExample606", testExample606),
-        ("testExample607", testExample607),
-        ("testExample608", testExample608),
-    ]
 }

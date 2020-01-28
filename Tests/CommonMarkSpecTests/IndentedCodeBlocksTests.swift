@@ -254,18 +254,4 @@ final class CommonMarkSpecIndentedCodeBlocksTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample77", testExample77),
-        ("testExample78", testExample78),
-        ("testExample79", testExample79),
-        ("testExample80", testExample80),
-        ("testExample81", testExample81),
-        ("testExample82", testExample82),
-        ("testExample83", testExample83),
-        ("testExample84", testExample84),
-        ("testExample85", testExample85),
-        ("testExample86", testExample86),
-        ("testExample87", testExample87),
-        ("testExample88", testExample88),
-    ]
 }

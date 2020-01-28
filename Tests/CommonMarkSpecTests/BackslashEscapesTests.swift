@@ -226,19 +226,4 @@ final class CommonMarkSpecBackslashEscapesTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample298", testExample298),
-        ("testExample299", testExample299),
-        ("testExample300", testExample300),
-        ("testExample301", testExample301),
-        ("testExample302", testExample302),
-        ("testExample303", testExample303),
-        ("testExample304", testExample304),
-        ("testExample305", testExample305),
-        ("testExample306", testExample306),
-        ("testExample307", testExample307),
-        ("testExample308", testExample308),
-        ("testExample309", testExample309),
-        ("testExample310", testExample310),
-    ]
 }

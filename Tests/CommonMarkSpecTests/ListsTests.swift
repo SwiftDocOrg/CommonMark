@@ -696,32 +696,4 @@ final class CommonMarkSpecListsTests: XCTestCase {
         XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
     }
 
-    static var allTests = [
-        ("testExample271", testExample271),
-        ("testExample272", testExample272),
-        ("testExample273", testExample273),
-        ("testExample274", testExample274),
-        ("testExample275", testExample275),
-        ("testExample276", testExample276),
-        ("testExample277", testExample277),
-        ("testExample278", testExample278),
-        ("testExample279", testExample279),
-        ("testExample280", testExample280),
-        ("testExample281", testExample281),
-        ("testExample282", testExample282),
-        ("testExample283", testExample283),
-        ("testExample284", testExample284),
-        ("testExample285", testExample285),
-        ("testExample286", testExample286),
-        ("testExample287", testExample287),
-        ("testExample288", testExample288),
-        ("testExample289", testExample289),
-        ("testExample290", testExample290),
-        ("testExample291", testExample291),
-        ("testExample292", testExample292),
-        ("testExample293", testExample293),
-        ("testExample294", testExample294),
-        ("testExample295", testExample295),
-        ("testExample296", testExample296),
-    ]
 }

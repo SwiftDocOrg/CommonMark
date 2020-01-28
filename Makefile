@@ -1,8 +1,5 @@
 COMMONMARK_SPEC_VERSION=0.29
 
-Tests/CommonMarkSpecTests/XCTestManifests.swift: Resources/XCTestManifests.swift.gyb | Tests/CommonMarkSpecTests
-	@gyb --line-directive '' -o $@ $<; \
-
 Tests/CommonMarkSpecTests: Resources/spec.json | Resources/spec
 	@mkdir -p $@
 	@for section in $(shell jq -c '.[].section' $< | uniq); do \
