@@ -98,7 +98,7 @@ open class Node {
     /// The line and column range of the element in the document.
     public var range: ClosedRange<Document.Position> {
         let start = Document.Position(line: numericCast(cmark_node_get_start_line(cmark_node)), column: numericCast(cmark_node_get_start_column(cmark_node)))
-        let end = Document.Position(line: numericCast(cmark_node_get_end_line(cmark_node)), column: numericCast(cmark_node_get_end_column(cmark_node)))
+        let end = Document.Position(line: max(start.line, numericCast(cmark_node_get_end_line(cmark_node))), column: max(start.column, numericCast(cmark_node_get_end_column(cmark_node))))
 
         return start...end
     }
