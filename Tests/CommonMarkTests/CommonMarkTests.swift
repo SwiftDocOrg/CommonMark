@@ -7,8 +7,4 @@ final class CommonMarkTests: XCTestCase {
         XCTAssertEqual(CommonMark.version.minor, 28)
         XCTAssertEqual(CommonMark.version.patch, 3)
     }
-
-    static var allTests = [
-        ("testCommonMarkVersion", testCommonMarkVersion),
-    ]
 }

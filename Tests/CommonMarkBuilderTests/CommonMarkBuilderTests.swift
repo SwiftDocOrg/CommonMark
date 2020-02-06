@@ -30,10 +30,4 @@ final class CommonMarkBuilderTests: XCTestCase {
 
         XCTAssertEqual(document.description, expected.description)
     }
-
-    static var allTests = [
-        ("testCommonMarkBuilder", testCommonMarkBuilder),
-    ]
-
-
 }

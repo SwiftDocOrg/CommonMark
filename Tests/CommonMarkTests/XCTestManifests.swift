@@ -25,6 +25,7 @@ extension DocumentParsingTests {
     // to regenerate.
     static let __allTests__DocumentParsingTests = [
         ("testDocumentParsing", testDocumentParsing),
+        ("testInvalidRange", testInvalidRange),
     ]
 }
 
