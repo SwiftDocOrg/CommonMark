@@ -30,6 +30,21 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(paragraph.range.upperBound.column, 62)
     }
 
+    // https://github.com/SwiftDocOrg/CommonMark/issues/1
+    func testInvalidRange() throws {
+        let commonmark = "* #"
+
+        let document = try Document(commonmark)
+
+        let list = document.children.first as! List
+        let item = list.children.first! as List.Item
+        let heading = item.children.first as! Heading
+        XCTAssertEqual(heading.range.lowerBound.line, 1)
+        XCTAssertEqual(heading.range.lowerBound.column, 3)
+        XCTAssertEqual(heading.range.upperBound.line, 1)
+        XCTAssertEqual(heading.range.upperBound.column, 3)
+    }
+
     static var allTests = [
         ("testDocumentParsing", testDocumentParsing),
     ]
