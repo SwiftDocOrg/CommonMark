@@ -44,8 +44,4 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(heading.range.upperBound.line, 1)
         XCTAssertEqual(heading.range.upperBound.column, 3)
     }
-
-    static var allTests = [
-        ("testDocumentParsing", testDocumentParsing),
-    ]
 }

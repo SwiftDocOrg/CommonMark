@@ -20,8 +20,4 @@ final class DocumentCreationTests: XCTestCase {
 
         XCTAssertEqual(document.description, expected.description)
     }
-
-    static var allTests = [
-        ("testDocumentCreation", testDocumentCreation),
-    ]
 }

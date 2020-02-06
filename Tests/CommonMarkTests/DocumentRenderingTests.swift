@@ -98,11 +98,4 @@ final class DocumentRenderingTests: XCTestCase {
 
         XCTAssertEqual(document.render(format: .manpage, width: 60), expected)
     }
-
-    static var allTests = [
-        ("testDocumentHTMLRendering", testDocumentHTMLRendering),
-        ("testDocumentXMLRendering", testDocumentXMLRendering),
-        ("testDocumentLaTeXRendering", testDocumentLaTeXRendering),
-        ("testDocumentManpageRendering", testDocumentManpageRendering),
-    ]
 }
