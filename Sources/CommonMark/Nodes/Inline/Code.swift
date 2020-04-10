@@ -11,7 +11,7 @@ import cmark
  > and ends with a backtick string of equal length.
 */
 public final class Code: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE }
 
     public convenience init(literal: String? = nil) {
         self.init()

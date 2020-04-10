@@ -15,7 +15,7 @@ import cmark
  > The result will be the same in browsers.)
 */
 public final class SoftLineBreak: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_SOFTBREAK }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_SOFTBREAK }
 
     public convenience init() {
         self.init(nonrecursively: ())

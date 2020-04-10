@@ -43,7 +43,7 @@ public final class List: Node {
     }
 
     public final class Item: Node {
-        public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
+        override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
 
         public convenience init(children: [Inline & Node] = []) {
             self.init(children: [Paragraph(children: children)])
@@ -58,7 +58,7 @@ public final class List: Node {
         }
     }
 
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LIST }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LIST }
 
     public convenience init(delimiter: Delimiter = .none, children: [List.Item] = []) {
         self.init()

@@ -14,7 +14,7 @@ import cmark
  > (rendered in HTML as a `<br />` tag):
  */
 public final class HardLineBreak: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINEBREAK }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINEBREAK }
 
     public convenience init() {
         self.init(nonrecursively: ())

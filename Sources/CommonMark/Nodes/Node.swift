@@ -1,24 +1,24 @@
 import cmark
 
 /// A CommonMark node.
-open class Node {
-    public class var cmark_node_type: cmark_node_type {
+public class Node: Codable {
+    class var cmark_node_type: cmark_node_type {
         assertionFailure("should be overridden in subclass")
         return CMARK_NODE_NONE
     }
 
     /// A pointer to the underlying `cmark_node` for the node.
-    public final let cmark_node: OpaquePointer
+    final let cmark_node: OpaquePointer
 
     /// Whether the underlying `cmark_node` should be freed upon deallocation.
-    public var managed: Bool = false
+    var managed: Bool = false
 
     /**
      Creates a node from a `cmark_node` pointer.
 
      - Parameter cmark_node: A `cmark_node` pointer.
      */
-    init(_ cmark_node: OpaquePointer) {
+    required init(_ cmark_node: OpaquePointer) {
         self.cmark_node = cmark_node
         assert(type(of: self) != Node.self)
         assert(cmark_node_get_type(cmark_node) == type(of: self).cmark_node_type)
@@ -106,6 +106,72 @@ open class Node {
     /// The parent of the element, if any.
     public var parent: Node? {
         return Node.create(for: cmark_node_parent(cmark_node))
+    }
+
+    // MARK: - Codable
+
+    public required convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let commonmark = try container.decode(String.self)
+        
+
+        switch Self.cmark_node_type {
+        case CMARK_NODE_DOCUMENT:
+            let document = try Document(commonmark, options: [])
+            self.init(document.cmark_node)
+        case CMARK_NODE_DOCUMENT,
+             CMARK_NODE_BLOCK_QUOTE,
+             CMARK_NODE_LIST,
+             CMARK_NODE_ITEM,
+             CMARK_NODE_CODE_BLOCK,
+             CMARK_NODE_HTML_BLOCK,
+             CMARK_NODE_CUSTOM_BLOCK,
+             CMARK_NODE_PARAGRAPH,
+             CMARK_NODE_HEADING,
+             CMARK_NODE_THEMATIC_BREAK:
+            let document = try Document(commonmark, options: [])
+            let documentChildren = document.children
+            guard let block = documentChildren.first as? Self,
+                documentChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
+            }
+
+            self.init(block.cmark_node)
+        case CMARK_NODE_TEXT,
+             CMARK_NODE_SOFTBREAK,
+             CMARK_NODE_LINEBREAK,
+             CMARK_NODE_CODE,
+             CMARK_NODE_HTML_INLINE,
+             CMARK_NODE_CUSTOM_INLINE,
+             CMARK_NODE_EMPH,
+             CMARK_NODE_STRONG,
+             CMARK_NODE_LINK,
+             CMARK_NODE_IMAGE:
+            let document = try Document(commonmark, options: [])
+            let documentChildren = document.children
+            guard let paragraph = documentChildren.first as? Paragraph,
+                documentChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
+            }
+
+            let paragraphChildren = paragraph.children
+            guard let inline = paragraphChildren.first as? Self,
+                paragraphChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
+            }
+
+            self.init(inline.cmark_node)
+        default:
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(description)
     }
 }
 

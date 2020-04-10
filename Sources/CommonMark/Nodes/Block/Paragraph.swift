@@ -16,7 +16,7 @@ import cmark
  > concatenating the lines and removing initial and final whitespace.
 */
 public final class Paragraph: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_PARAGRAPH }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_PARAGRAPH }
 
     public convenience init(text string: String, replacingNewLinesWithBreaks: Bool = true) {
         let children: [Inline & Node]
