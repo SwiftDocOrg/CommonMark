@@ -20,7 +20,7 @@ extension Emphasis: ListItemConvertible {}
 extension Link: ListItemConvertible {}
 extension Image: ListItemConvertible {}
 extension Code: ListItemConvertible {}
-extension HTML: ListItemConvertible {}
+extension RawHTML: ListItemConvertible {}
 extension SoftLineBreak: ListItemConvertible {}
 extension HardLineBreak: ListItemConvertible {}
 

@@ -81,7 +81,7 @@ open class Node {
         case CMARK_NODE_CODE:
             return Code(cmark_node)
         case CMARK_NODE_HTML_INLINE:
-            return HTML(cmark_node)
+            return RawHTML(cmark_node)
         case CMARK_NODE_EMPH:
             return Emphasis(cmark_node)
         case CMARK_NODE_STRONG:

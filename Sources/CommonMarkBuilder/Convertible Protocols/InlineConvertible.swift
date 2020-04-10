@@ -12,7 +12,7 @@ extension Emphasis: InlineConvertible {}
 extension Link: InlineConvertible {}
 extension Image: InlineConvertible {}
 extension Code: InlineConvertible {}
-extension HTML: InlineConvertible {}
+extension RawHTML: InlineConvertible {}
 extension SoftLineBreak: InlineConvertible {}
 extension HardLineBreak: InlineConvertible {}
 

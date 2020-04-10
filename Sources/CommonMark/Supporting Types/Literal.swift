@@ -25,6 +25,6 @@ extension Literal {
 
 extension Code: Literal {}
 extension CodeBlock: Literal {}
-extension HTML: Literal {}
+extension RawHTML: Literal {}
 extension HTMLBlock: Literal {}
 extension Text: Literal {}

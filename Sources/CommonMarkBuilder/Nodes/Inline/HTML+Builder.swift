@@ -1,6 +1,6 @@
 import CommonMark
 
-extension HTML {
+extension RawHTML {
     public convenience init(_ closure: () -> String) {
         self.init(literal: closure())
     }
