@@ -9,6 +9,6 @@ extension Emphasis: Inline {}
 extension Link: Inline {}
 extension Image: Inline {}
 extension Code: Inline {}
-extension HTML: Inline {}
+extension RawHTML: Inline {}
 extension SoftLineBreak: Inline {}
 extension HardLineBreak: Inline {}
