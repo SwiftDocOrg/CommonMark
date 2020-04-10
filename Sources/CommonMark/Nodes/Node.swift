@@ -2,10 +2,7 @@ import cmark
 
 /// A CommonMark node.
 public class Node: Codable {
-    class var cmark_node_type: cmark_node_type {
-        assertionFailure("should be overridden in subclass")
-        return CMARK_NODE_NONE
-    }
+    class var cmark_node_type: cmark_node_type { return CMARK_NODE_NONE }
 
     /// A pointer to the underlying `cmark_node` for the node.
     final let cmark_node: OpaquePointer
@@ -113,7 +110,6 @@ public class Node: Codable {
     public required convenience init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let commonmark = try container.decode(String.self)
-        
 
         switch Self.cmark_node_type {
         case CMARK_NODE_DOCUMENT:
