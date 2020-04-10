@@ -34,7 +34,7 @@ import cmark
  > thematic break, list item, or HTML block.
  */
 public final class Heading: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HEADING }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HEADING }
 
     static let levelRange: ClosedRange<Int> = 1...6
 

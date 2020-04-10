@@ -14,7 +14,7 @@ import cmark
  > so custom tags (and even, say, DocBook tags) may be used.
 */
 public final class RawHTML: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HTML_INLINE }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HTML_INLINE }
 
     public convenience init(literal: String?) {
         self.init()

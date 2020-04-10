@@ -46,7 +46,7 @@ public final class Document: Node {
         case invalid
     }
 
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_DOCUMENT }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_DOCUMENT }
 
     /**
      Creates a document from a CommonMark string.

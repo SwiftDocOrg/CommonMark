@@ -11,7 +11,7 @@ import cmark
  > (and will not be escaped in HTML output).
  */
 public final class HTMLBlock: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HTML_BLOCK }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_HTML_BLOCK }
 
     public convenience init(literal: String? = nil) {
         self.init()

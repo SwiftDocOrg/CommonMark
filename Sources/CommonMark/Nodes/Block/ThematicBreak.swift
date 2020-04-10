@@ -13,7 +13,7 @@ import cmark
  > forms a thematic break.
  */
 public final class ThematicBreak: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_THEMATIC_BREAK }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_THEMATIC_BREAK }
 
     public convenience init() {
         self.init(nonrecursively: ())

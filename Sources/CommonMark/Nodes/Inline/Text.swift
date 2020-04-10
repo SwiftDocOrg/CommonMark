@@ -11,7 +11,7 @@ import cmark
  > will be parsed as plain textual content.
 */
 public final class Text: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_TEXT }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_TEXT }
 
     public convenience init(literal: String? = nil) {
         self.init()

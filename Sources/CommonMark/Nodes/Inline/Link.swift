@@ -16,7 +16,7 @@ import cmark
  > ## [6.7 Autolinks](https://spec.commonmark.org/0.29/#autolinks)
  */
 public final class Link: Node {
-    public override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINK }
+    override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LINK }
     
     public convenience init(urlString: String, title: String? = nil, text string: String) {
         self.init(urlString: urlString, title: title, children: [Text(literal: string)])
