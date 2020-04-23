@@ -46,6 +46,8 @@ public class Node: Codable {
         guard let cmark_node = cmark_node else { return nil }
 
         switch cmark_node_get_type(cmark_node) {
+        case CMARK_NODE_DOCUMENT:
+            return Document(cmark_node)
         case CMARK_NODE_BLOCK_QUOTE:
             return BlockQuote(cmark_node)
         case CMARK_NODE_LIST:
