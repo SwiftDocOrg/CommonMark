@@ -70,4 +70,19 @@ final class ContainerManipulationTests: XCTestCase {
         XCTAssertTrue(wasFithInserted)
         XCTAssertEqual(list.children[4], fifth)
     }
+
+    func testListItemManipulation() throws {
+
+        let listItem = List.Item(children: [Paragraph(text: "First")])
+
+        let secondChild = Paragraph(text: "Second")
+        let wasSecondChildInserted = listItem.insert(child: secondChild, after: listItem.children[0])
+        XCTAssertTrue(wasSecondChildInserted)
+        XCTAssertEqual(listItem.children[1], secondChild)
+
+        let thirdChild = Paragraph(text: "Third")
+        let wasThirdChildInserted = listItem.insert(child: thirdChild, before: listItem.children[0])
+        XCTAssertTrue(wasThirdChildInserted)
+        XCTAssertEqual(listItem.children[0], thirdChild)
+    }
 }
