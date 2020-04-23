@@ -48,4 +48,26 @@ final class ContainerManipulationTests: XCTestCase {
         XCTAssertTrue(wasLineBreakInserted)
         XCTAssertEqual(paragraph.children[1], lineBrake)
     }
+    
+    func testListManipulation() throws {
+        let document = try Document(
+            #"""
+            * First
+            * Second
+            * Forth
+            """#)
+        
+        let list = document.children[0] as! List
+        XCTAssertEqual(list.children.count, 3)
+
+        let third = List.Item(children: [Text(literal: "Third")])
+        let wasThirdInserted = list.insert(child: third, before: list.children[2])
+        XCTAssertTrue(wasThirdInserted)
+        XCTAssertEqual(list.children[2], third)
+
+        let fifth = List.Item(children: [Text(literal: "Fifth")])
+        let wasFithInserted = list.insert(child: fifth, after: list.children[3])
+        XCTAssertTrue(wasFithInserted)
+        XCTAssertEqual(list.children[4], fifth)
+    }
 }
