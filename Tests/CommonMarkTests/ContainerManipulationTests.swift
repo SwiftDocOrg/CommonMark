@@ -31,4 +31,21 @@ final class ContainerManipulationTests: XCTestCase {
         XCTAssertEqual(document.children.count, 5)
         XCTAssertEqual(newSubheading, document.children[3])
     }
+    
+    func testContainerOfInlineElementsManipulation() throws {
+        let document = try Document(Fixtures.uhdr)
+
+        let paragraph = document.children[2] as! Paragraph
+        XCTAssertEqual(paragraph.children.count, 5)
+
+        let text = Text(literal: "Article 1:")
+        let wasTextInserted = paragraph.insert(child: text, before: paragraph.children[0])
+        XCTAssertTrue(wasTextInserted)
+        XCTAssertEqual(paragraph.children[0], text)
+
+        let lineBrake = SoftLineBreak()
+        let wasLineBreakInserted = paragraph.insert(child: lineBrake, after: text)
+        XCTAssertTrue(wasLineBreakInserted)
+        XCTAssertEqual(paragraph.children[1], lineBrake)
+    }
 }
