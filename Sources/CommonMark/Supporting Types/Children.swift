@@ -109,7 +109,7 @@ extension ContainerOfBlocks {
     */
     @discardableResult
     public func insert(child: Block & Node, before sibling: Block & Node) -> Bool {
-        return add(child) { cmark_node_insert_before(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -122,7 +122,7 @@ extension ContainerOfBlocks {
     */
     @discardableResult
     public func insert(child: Block & Node, after sibling: Block & Node) -> Bool {
-        return add(child) { cmark_node_insert_after(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -206,7 +206,7 @@ extension ContainerOfInlineElements {
     */
     @discardableResult
     public func insert(child: Inline & Node, before sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_before(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -219,7 +219,7 @@ extension ContainerOfInlineElements {
     */
     @discardableResult
     public func insert(child: Inline & Node, after sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_after(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -292,7 +292,7 @@ extension List {
     */
     @discardableResult
     public func insert(child: Item, before sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_before(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -305,7 +305,7 @@ extension List {
     */
     @discardableResult
     public func insert(child: Item, after sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_after(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -378,7 +378,7 @@ extension List.Item {
     */
     @discardableResult
     public func insert(child: Node, before sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_before(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
@@ -391,7 +391,7 @@ extension List.Item {
     */
     @discardableResult
     public func insert(child: Node, after sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_after(child.cmark_node, sibling.cmark_node) }
+        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
     }
 
     /**
