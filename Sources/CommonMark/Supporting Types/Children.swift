@@ -1,26 +1,22 @@
 import cmark
 
-struct Children: Sequence {
-    var cmark_node: OpaquePointer
+private struct Children<ChildNode>: Sequence {
+    let cmark_node: OpaquePointer
 
     init(of node: Node) {
         cmark_node = node.cmark_node
     }
 
-    init(of document: Document) {
-        cmark_node = document.cmark_node
-    }
-
-    func makeIterator() -> AnyIterator<Node> {
+    func makeIterator() -> AnyIterator<ChildNode> {
         var iterator = CMarkNodeChildIterator(cmark_node)
         return AnyIterator {
             guard let child = iterator.next() else { return nil }
-            return Node.create(for: child)
+            return Node.create(for: child) as? ChildNode
         }
     }
 }
 
-struct CMarkNodeChildIterator: IteratorProtocol {
+private struct CMarkNodeChildIterator: IteratorProtocol {
     var current: OpaquePointer!
 
     init(_ node: OpaquePointer!) {
@@ -52,16 +48,15 @@ fileprivate func add<Child: Node>(_ child: Child, with operation: () -> Int32) -
 
 // MARK: -
 
-public protocol ContainerOfBlocks: Node {}
+public protocol Container: Node {
+    associatedtype ChildNode
+}
 
-extension Document: ContainerOfBlocks {}
-extension BlockQuote: ContainerOfBlocks {}
-
-extension ContainerOfBlocks {
+extension Container where ChildNode: Node {
     /// The block's children.
-    public var children: [Block & Node] {
+    public var children: [ChildNode] {
         get {
-            return Children(of: self).compactMap { $0 as? Block & Node }
+            return Array(Children(of: self))
         }
 
         set {
@@ -83,7 +78,7 @@ extension ContainerOfBlocks {
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
-    public func prepend(child: Block & Node) -> Bool {
+    public func prepend(child: ChildNode) -> Bool {
         return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
     }
 
@@ -95,7 +90,7 @@ extension ContainerOfBlocks {
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
-    public func append(child: Block & Node) -> Bool {
+    public func append(child: ChildNode) -> Bool {
         return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
     }
 
@@ -108,7 +103,7 @@ extension ContainerOfBlocks {
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
-    public func insert(child: Block & Node, before sibling: Block & Node) -> Bool {
+    public func insert(child: ChildNode, before sibling: ChildNode) -> Bool {
         return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
     }
 
@@ -121,7 +116,7 @@ extension ContainerOfBlocks {
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
-    public func insert(child: Block & Node, after sibling: Block & Node) -> Bool {
+    public func insert(child: ChildNode, after sibling: ChildNode) -> Bool {
         return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
     }
 
@@ -133,7 +128,7 @@ extension ContainerOfBlocks {
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
-    public func remove(child: Block & Node) -> Bool {
+    public func remove(child: ChildNode) -> Bool {
         guard child.parent == self else { return false }
         cmark_node_unlink(child.cmark_node)
         child.managed = true
@@ -141,271 +136,51 @@ extension ContainerOfBlocks {
     }
 }
 
+
 // MARK: -
 
-public protocol ContainerOfInlineElements: Node {}
-
-extension Heading: ContainerOfInlineElements {}
-extension Paragraph: ContainerOfInlineElements {}
-extension HTMLBlock: ContainerOfInlineElements {}
-extension CodeBlock: ContainerOfInlineElements {}
-extension ThematicBreak: ContainerOfInlineElements {}
-extension Strong: ContainerOfInlineElements {}
-extension Emphasis: ContainerOfInlineElements {}
-extension Link: ContainerOfInlineElements {}
-
-extension ContainerOfInlineElements {
-    /// The block's children.
-    public var children: [Inline & Node] {
-        get {
-            return Children(of: self).compactMap { $0 as? Inline & Node }
-        }
-
-        set {
-            for child in children {
-                remove(child: child)
-            }
-
-            for child in newValue {
-                append(child: child)
-            }
-        }
-    }
-
-    /**
-     Adds an inline element to the beginning of the block's children.
-
-     - Parameters:
-        - child: The inline element to add.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func prepend(child: Inline & Node) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Adds an inline element to the end of the block's children.
-
-     - Parameters:
-        - child: The inline element to add.
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func append(child: Inline & Node) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts an inline element to the block's children before a specified sibling.
-
-     - Parameters:
-        - child: The inline element to add.
-        - sibling: The child before which the inline element is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Inline & Node, before sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts an inline element to the block's children after a specified sibling.
-
-     - Parameters:
-        - child: The inline element to add.
-        - sibling: The child after which the inline element is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Inline & Node, after sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Removes an inline element from the block's children.
-
-     - Parameters:
-        - child: The inline element to remove.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func remove(child: Inline & Node) -> Bool {
-        guard child.parent == self else { return false }
-        cmark_node_unlink(child.cmark_node)
-        child.managed = true
-        return true
-    }
+extension Document: Container {
+    public typealias ChildNode = Block & Node
+}
+extension BlockQuote: Container {
+    public typealias ChildNode = Block & Node
 }
 
 // MARK: -
 
-extension List {
-    /// The block's children.
-    public var children: [Item] {
-        get {
-            return Children(of: self).compactMap { $0 as? Item }
-        }
-
-        set {
-            for child in children {
-                remove(child: child)
-            }
-
-            for child in newValue {
-                append(child: child)
-            }
-        }
-    }
-
-    /**
-     Adds a block to the beginning of the block's children.
-
-     - Parameters:
-        - child: The block to add.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func prepend(child: Item) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Adds a block to the end of the block's children.
-
-     - Parameters:
-        - child: The block to add.
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func append(child: Item) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts a block to the block's children before a specified sibling.
-
-     - Parameters:
-        - child: The block to add.
-        - sibling: The child before which the block is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Item, before sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts a block to the block's children after a specified sibling.
-
-     - Parameters:
-        - child: The block to add.
-        - sibling: The child after which the block is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Item, after sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Removes a block from the block's children.
-
-     - Parameters:
-        - child: The block to remove.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func remove(child: Item) -> Bool {
-         guard child.parent == self else { return false }
-         cmark_node_unlink(child.cmark_node)
-         child.managed = true
-         return true
-    }
+extension Heading: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension Paragraph: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension HTMLBlock: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension CodeBlock: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension ThematicBreak: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension Strong: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension Emphasis: Container {
+    public typealias ChildNode = Inline & Node
+}
+extension Link: Container {
+    public typealias ChildNode = Inline & Node
 }
 
 // MARK: -
 
-extension List.Item {
-    /// The list item's children.
-    public var children: [Node] {
-        get {
-            return Children(of: self).map { $0 }
-        }
+extension List: Container {
+    public typealias ChildNode = Item
+}
 
-        set {
-            for child in children {
-                remove(child: child)
-            }
+// MARK: -
 
-            for child in newValue {
-                append(child: child)
-            }
-        }
-    }
-
-    /**
-     Adds a node to the beginning of the list item's children.
-
-     - Parameters:
-        - child: The block to add.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func prepend(child: Node) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Adds a node to the end of the list item's children.
-
-     - Parameters:
-        - child: The block to add.
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func append(child: Node) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts a node to the list item's children before a specified sibling.
-
-     - Parameters:
-        - child: The block to add.
-        - sibling: The child before which the block is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Node, before sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Inserts a node to the list item's children after a specified sibling.
-
-     - Parameters:
-        - child: The block to add.
-        - sibling: The child after which the block is added
-     - Returns: `true` if successful, otherwise `false`.
-    */
-    @discardableResult
-    public func insert(child: Node, after sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
-    }
-
-    /**
-     Removes a node from the list item's children.
-
-     - Parameters:
-        - child: The block to remove.
-     - Returns: `true` if successful, otherwise `false`.
-     */
-    @discardableResult
-    public func remove(child: Node) -> Bool {
-        guard child.parent == self else { return false }
-        cmark_node_unlink(child.cmark_node)
-        child.managed = true
-        return true
-    }
+extension List.Item: Container {
+    public typealias ChildNode = Node
 }
