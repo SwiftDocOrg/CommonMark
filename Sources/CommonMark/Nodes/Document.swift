@@ -63,14 +63,6 @@ public final class Document: Node {
 
         self.init(cmark_node)
     }
-
-    public convenience init(children: [Block & Node] = []) {
-        self.init()
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
-    }
 }
 
 // MARK: - Comparable

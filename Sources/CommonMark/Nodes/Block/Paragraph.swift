@@ -29,12 +29,4 @@ public final class Paragraph: Node {
 
         self.init(children: children)
     }
-
-    public convenience init(children: [Inline & Node] = []) {
-        self.init()
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
-    }
 }

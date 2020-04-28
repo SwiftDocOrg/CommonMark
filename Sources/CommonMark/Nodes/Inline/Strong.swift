@@ -13,12 +13,4 @@ public final class Strong: Node {
     public convenience init(text string: String) {
         self.init(children: [Text(literal: string)])
     }
-
-    public convenience init(children: [Inline & Node] = []) {
-        self.init()
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
-    }
 }
