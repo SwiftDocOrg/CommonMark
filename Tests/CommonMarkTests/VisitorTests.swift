@@ -3,80 +3,174 @@ import CommonMark
 
 final class VisitorTests: XCTestCase {
     func testVisitorVisitingChildren() throws {
-        final class TestVisitor: Visitor {
-            var numberOfHeadings: Int = 0
-            var numberOfParagraphs: Int = 0
-            var numberOfLinks: Int = 0
+        typealias TestVisitor = StatisticsVisitor
 
-            var defaultContinueKind: VisitorContinueKind {
-                return .visitChildren
-            }
+        // Document nodes:
 
-            func visit(heading: Heading) -> VisitorContinueKind {
-                self.numberOfHeadings += 1
+        // Document
+        // ├─ Heading
+        // │  └─ Link
+        // │    └─ Text
+        // ├─ Heading
+        // │  └─ Text
+        // └─ Paragraph
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    └─ Text
+        let document = try Document(Fixtures.udhr)
 
-                return .visitChildren
-            }
+        // Visited nodes:
 
-            func visit(paragraph: Paragraph) -> VisitorContinueKind {
-                self.numberOfParagraphs += 1
-
-                return .visitChildren
-            }
-
-            func visit(link: Link) -> VisitorContinueKind {
-                self.numberOfLinks += 1
-
-                return .visitChildren
-            }
-        }
-
-        let document = try Document(Fixtures.uhdr)
+        // Document
+        // ├─ Heading
+        // │  └─ Link
+        // │    └─ Text
+        // ├─ Heading
+        // │  └─ Text
+        // └─ Paragraph
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    └─ Text
         let visitor = TestVisitor()
-
         visitor.walk(document)
 
-        XCTAssertEqual(visitor.numberOfHeadings, 2)
-        XCTAssertEqual(visitor.numberOfParagraphs, 1)
-        XCTAssertEqual(visitor.numberOfLinks, 1)
+        let expedted = DocumentStatistics(
+            documents: 1,
+            nodes: 12,
+            blocks: 3,
+            leafBlocks: 3,
+            headings: 2,
+            paragraphs: 1,
+            inlines: 8,
+            texts: 5,
+            links: 1,
+            softLineBreaks: 2
+        )
+
+        XCTAssertEqual(visitor.statistics, expedted)
     }
 
     func testVisitorSkippingChildren() throws {
-        final class TestVisitor: Visitor {
-            var numberOfHeadings: Int = 0
-            var numberOfParagraphs: Int = 0
-            var numberOfLinks: Int = 0
-
-            var defaultContinueKind: VisitorContinueKind {
-                return .visitChildren
-            }
-            
-            func visit(heading: Heading) -> VisitorContinueKind {
-                self.numberOfHeadings += 1
+        final class TestVisitor: StatisticsVisitor {
+            override func visit(link: Link) -> VisitorContinueKind {
+                let _ = super.visit(link: link)
 
                 return .skipChildren
             }
 
-            func visit(paragraph: Paragraph) -> VisitorContinueKind {
-                self.numberOfParagraphs += 1
-
-                return .skipChildren
-            }
-
-            func visit(link: Link) -> VisitorContinueKind {
-                self.numberOfLinks += 1
+            override func visit(paragraph: Paragraph) -> VisitorContinueKind {
+                let _ = super.visit(paragraph: paragraph)
 
                 return .skipChildren
             }
         }
 
-        let document = try Document(Fixtures.uhdr)
-        let visitor = TestVisitor()
+        // Document nodes:
 
+        // Document
+        // ├─ Heading
+        // │  └─ Link
+        // │    └─ Text
+        // ├─ Heading
+        // │  └─ Text
+        // └─ Paragraph
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    └─ Text
+        let document = try Document(Fixtures.udhr)
+
+        // Visited nodes:
+
+        // Document
+        // ├─ Heading
+        // │  └─ Link (children skipped)
+        // ├─ Heading
+        // │  └─ Text
+        // └─ Paragraph (children skipped)
+        let visitor = TestVisitor()
         visitor.walk(document)
 
-        XCTAssertEqual(visitor.numberOfHeadings, 2)
-        XCTAssertEqual(visitor.numberOfParagraphs, 1)
-        XCTAssertEqual(visitor.numberOfLinks, 0)
+        let expedted = DocumentStatistics(
+            documents: 1,
+            nodes: 6,
+            blocks: 3,
+            leafBlocks: 3,
+            headings: 2,
+            paragraphs: 1,
+            inlines: 2,
+            texts: 1,
+            links: 1,
+            softLineBreaks: 0
+        )
+
+        XCTAssertEqual(visitor.statistics, expedted)
+    }
+
+    func testVisitorOverrides() throws {
+        final class TestVisitor: StatisticsVisitor {
+            override func visit(block: Block) -> VisitorContinueKind {
+                let _ = super.visit(block: block)
+
+                return .skipChildren
+            }
+
+            // Given that `Paragraph` is a subtype of `Block` it overrides:
+            override func visit(paragraph: Paragraph) -> VisitorContinueKind {
+                let _ = super.visit(paragraph: paragraph)
+
+                return .visitChildren
+            }
+        }
+
+        // Document nodes:
+
+        // Document
+        // ├─ Heading
+        // │  └─ Link
+        // │    └─ Text
+        // ├─ Heading
+        // │  └─ Text
+        // └─ Paragraph
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    └─ Text
+        let document = try Document(Fixtures.udhr)
+
+        // Visited nodes:
+
+        // Document
+        // ├─ Heading (children skipped)
+        // ├─ Heading (children skipped)
+        // └─ Paragraph
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    ├─ Text
+        //    ├─ SoftLineBreak
+        //    └─ Text
+        let visitor = TestVisitor()
+        visitor.walk(document)
+
+        let expected = DocumentStatistics(
+            documents: 1,
+            nodes: 9,
+            blocks: 3,
+            leafBlocks: 3,
+            headings: 2,
+            paragraphs: 1,
+            inlines: 5,
+            texts: 3,
+            links: 0,
+            softLineBreaks: 2
+        )
+
+        XCTAssertEqual(visitor.statistics, expected)
     }
 }
