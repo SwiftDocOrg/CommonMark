@@ -3,7 +3,7 @@ import CommonMark
 
 final class ContainerManipulationTests: XCTestCase {
     func testContainerOfBlocksManipulation() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         XCTAssertEqual(document.children.count, 3)
         let heading = document.children[0] as! Heading
@@ -33,7 +33,7 @@ final class ContainerManipulationTests: XCTestCase {
     }
     
     func testContainerOfInlineElementsManipulation() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let paragraph = document.children[2] as! Paragraph
         XCTAssertEqual(paragraph.children.count, 5)

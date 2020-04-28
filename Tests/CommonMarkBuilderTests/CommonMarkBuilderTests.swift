@@ -26,7 +26,7 @@ final class CommonMarkBuilderTests: XCTestCase {
             }
         }
 
-        let expected = try Document(Fixtures.uhdr)
+        let expected = try Document(Fixtures.udhr)
 
         XCTAssertEqual(document.description, expected.description)
     }

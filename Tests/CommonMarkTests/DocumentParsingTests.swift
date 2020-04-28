@@ -3,7 +3,7 @@ import CommonMark
 
 final class DocumentParsingTests: XCTestCase {
     func testDocumentParsing() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         XCTAssertEqual(document.children.count, 3)
 
