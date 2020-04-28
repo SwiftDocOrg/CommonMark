@@ -3,7 +3,7 @@ import CommonMark
 
 final class DocumentRenderingTests: XCTestCase {
     func testDocumentCommonMarkRendering() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let expected = #"""
         # [Universal Declaration of Human Rights](https://www.un.org/en/universal-declaration-human-rights/ "View full version")
@@ -20,7 +20,7 @@ final class DocumentRenderingTests: XCTestCase {
     }
 
     func testDocumentHTMLRendering() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let expected = #"""
         <h1><a href="https://www.un.org/en/universal-declaration-human-rights/" title="View full version">Universal Declaration of Human Rights</a></h1>
@@ -35,7 +35,7 @@ final class DocumentRenderingTests: XCTestCase {
     }
 
     func testDocumentXMLRendering() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let expected = #"""
         <?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +64,7 @@ final class DocumentRenderingTests: XCTestCase {
     }
 
     func testDocumentLaTeXRendering() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let expected = #"""
         \section{\href{https://www.un.org/en/universal-declaration-human-rights/}{Universal Declaration of Human Rights}}
@@ -81,7 +81,7 @@ final class DocumentRenderingTests: XCTestCase {
     }
 
     func testDocumentManpageRendering() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let expected = #"""
         .SH

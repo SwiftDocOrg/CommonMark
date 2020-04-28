@@ -1,6 +1,6 @@
 public enum Fixtures {
-    public static let uhdr: String = #"""
-    # [Universal Declaration of Human Rights][uhdr]
+    public static let udhr: String = #"""
+    # [Universal Declaration of Human Rights][udhr]
 
     ## Article 1.
 
@@ -8,6 +8,6 @@ public enum Fixtures {
     They are endowed with reason and conscience
     and should act towards one another in a spirit of brotherhood.
 
-    [uhdr]: https://www.un.org/en/universal-declaration-human-rights/ "View full version"
+    [udhr]: https://www.un.org/en/universal-declaration-human-rights/ "View full version"
     """#
 }

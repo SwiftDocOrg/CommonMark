@@ -3,7 +3,7 @@ import CommonMark
 
 final class DocumentCodingTests: XCTestCase {
     func testDocumentCodingRoundTrip() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         // Workaround for "Top-level Document encoded as string JSON fragment."
         let encoded = try JSONEncoder().encode([document])
@@ -16,7 +16,7 @@ final class DocumentCodingTests: XCTestCase {
     }
 
     func testBlockElementCodingRoundTrip() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let heading = document.children.first! as! Heading
 
@@ -31,7 +31,7 @@ final class DocumentCodingTests: XCTestCase {
     }
 
     func testInlineElementCodingRoundTrip() throws {
-        let document = try Document(Fixtures.uhdr)
+        let document = try Document(Fixtures.udhr)
 
         let heading = document.children.first! as! Heading
         let link = heading.children.first! as! Link
