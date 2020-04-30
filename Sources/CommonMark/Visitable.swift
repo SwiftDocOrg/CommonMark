@@ -10,6 +10,7 @@ extension Document: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(document: self)
     }
 }
 
@@ -21,6 +22,7 @@ extension BlockQuote: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(blockQuote: self)
     }
 }
 
@@ -30,6 +32,7 @@ extension List: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(list: self)
     }
 }
 
@@ -39,6 +42,7 @@ extension List.Item: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(listItem: self)
     }
 }
 
@@ -50,6 +54,7 @@ extension Heading: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(heading: self)
     }
 }
 
@@ -59,6 +64,7 @@ extension Paragraph: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(paragraph: self)
     }
 }
 
@@ -68,6 +74,7 @@ extension HTMLBlock: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(htmlBlock: self)
     }
 }
 
@@ -77,6 +84,7 @@ extension CodeBlock: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(codeBlock: self)
     }
 }
 
@@ -86,6 +94,7 @@ extension ThematicBreak: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(thematicBreak: self)
     }
 }
 
@@ -97,6 +106,7 @@ extension Text: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(text: self)
     }
 }
 
@@ -106,6 +116,7 @@ extension Strong: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(strong: self)
     }
 }
 
@@ -115,6 +126,7 @@ extension Emphasis: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(emphasis: self)
     }
 }
 
@@ -124,6 +136,7 @@ extension Link: Visitable {
         if continueKind == .visitChildren {
             self.walkVisitableChildren(with: visitor)
         }
+        visitor.visitPost(link: self)
     }
 }
 
@@ -133,6 +146,7 @@ extension Image: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(image: self)
     }
 }
 
@@ -142,6 +156,7 @@ extension Code: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(code: self)
     }
 }
 
@@ -151,6 +166,7 @@ extension RawHTML: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(rawHTML: self)
     }
 }
 
@@ -160,6 +176,7 @@ extension SoftLineBreak: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(softLineBreak: self)
     }
 }
 
@@ -169,6 +186,7 @@ extension HardLineBreak: Visitable {
         if continueKind == .visitChildren {
             // type has no visitable children for now
         }
+        visitor.visitPost(hardLineBreak: self)
     }
 }
 
