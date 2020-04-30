@@ -136,7 +136,7 @@ $ swift test
 
 ## Requirements
 
-- Swift 5.1+
+- Swift 5.2+
 
 ## Installation
 
