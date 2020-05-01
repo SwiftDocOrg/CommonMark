@@ -19,6 +19,14 @@ final class DocumentRenderingTests: XCTestCase {
         XCTAssertEqual(document.render(format: .commonmark, width: 60), expected)
     }
 
+    func testNodeCommonMarkRendering() throws {
+        let document = try Document(Fixtures.udhr)
+
+        for child in document.children {
+            XCTAssertEqual(child.render(format: .commonmark), child.description)
+        }
+    }
+
     func testDocumentHTMLRendering() throws {
         let document = try Document(Fixtures.udhr)
 
@@ -32,6 +40,15 @@ final class DocumentRenderingTests: XCTestCase {
         """#
 
         XCTAssertEqual(document.render(format: .html), expected)
+    }
+
+    func testNodeHTMLRendering() throws {
+        let document = try Document(Fixtures.udhr)
+
+        let expected = document.children.map { $0.render(format: .html) }.joined()
+        let actual = document.render(format: .html)
+
+        XCTAssertEqual(expected, actual)
     }
 
     func testDocumentXMLRendering() throws {
