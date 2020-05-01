@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a changelog.
   #17 by @mattt.
 
+### Changed
+
+- Changed `render` method,
+  as well as nested `RenderingFormat` and `RenderingOptions` types,
+  from `Document` to `Node`.
+  #18 by @mattt.
+
 ### Fixed
 
 - Fixed abbreviation for "Universal Declaration of Human Rights" (UDHR)
