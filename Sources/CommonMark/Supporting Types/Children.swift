@@ -139,7 +139,7 @@ extension Container where ChildNode: Node {
 
 extension Container where ChildNode: Node {
     public init(children: [ChildNode]) {
-        self.init(cmark_node_new(type(of: self).cmark_node_type))
+        self.init(cmark_node_new(Self.cmark_node_type))
         guard !children.isEmpty else { return }
         for child in children {
             append(child: child)
