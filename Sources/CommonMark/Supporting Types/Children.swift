@@ -147,6 +147,17 @@ extension Container where ChildNode: Node {
     }
 }
 
+extension Container where ChildNode: Node, Self: Literal {
+    public init(literal: String, children: [ChildNode] = []) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.literal = literal
+        guard !children.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+}
+
 
 // MARK: -
 

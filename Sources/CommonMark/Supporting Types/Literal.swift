@@ -5,6 +5,13 @@ public protocol Literal: Node {
     init(literal: String?)
 }
 
+public extension Literal where Self: Node {
+    init(literal: String? = nil) {
+        self.init(cmark_node_new(Self.cmark_node_type))
+        self.literal = literal
+    }
+}
+
 // MARK: -
 
 extension Literal {

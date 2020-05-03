@@ -27,11 +27,6 @@ import cmark
 public final class CodeBlock: Node {
     override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE_BLOCK }
 
-    public convenience init(literal: String? = nil) {
-        self.init()
-        self.literal = literal
-    }
-
     public convenience init(literal: String, fenceInfo: String? = nil) {
         self.init()
         self.literal = literal
