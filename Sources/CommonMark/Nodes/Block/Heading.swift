@@ -42,15 +42,6 @@ public final class Heading: Node {
         self.init(level: level, children: [Text(literal: string)])
     }
 
-    public convenience init(level: Int, children: [Inline & Node] = []) {
-        self.init()
-        self.level = level
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
-    }
-
     public var level: Int {
         get {
             return numericCast(cmark_node_get_heading_level(cmark_node))
@@ -61,4 +52,12 @@ public final class Heading: Node {
             cmark_node_set_heading_level(cmark_node, numericCast(newValue))
         }
     }
+}
+
+extension Container where Self: Heading {
+    public init(level: Int, children: [Self.ChildNode] = []) {
+        self.init(children: children)
+        self.level = level
+    }
+
 }

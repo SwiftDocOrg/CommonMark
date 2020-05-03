@@ -21,14 +21,13 @@ public final class Link: Node {
     public convenience init(urlString: String, title: String? = nil, text string: String) {
         self.init(urlString: urlString, title: title, children: [Text(literal: string)])
     }
+}
 
-    public convenience init(urlString: String?, title: String?, children: [Inline & Node] = []) {
-        self.init()
+
+extension Container where Self: Link {
+    public init(urlString: String?, title: String?, children: [Self.ChildNode] = []) {
+        self.init(children: children)
         self.urlString = urlString
         self.title = title
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
     }
 }
