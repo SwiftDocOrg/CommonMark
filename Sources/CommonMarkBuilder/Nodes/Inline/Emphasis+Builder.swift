@@ -1,8 +1,8 @@
 import CommonMark
 
 extension Emphasis {
-    public convenience init(_ closure: () -> String) {
-        self.init(text: closure())
+    public convenience init(@StringBuilder _ builder: () -> String) {
+        self.init(text: builder())
     }
 
     public convenience init(@CommonMarkBuilder _ builder: () -> InlineConvertible) {
