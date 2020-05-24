@@ -23,18 +23,49 @@ public enum VisitorContinueKind {
 
 /// Visitor for walking a visitable structure.
 ///
-/// The order of object-wise visitations is:
+/// Override the appropriate `func visit(…:)`'s return value
+/// to customize the behavior (e.g. skip a given element's children),
+/// with sub-types overriding their super-type's behavior.
 ///
-/// 1. `func visit(node:)`, iff the visited object conforms to `Node`.
-/// 2. `func visit(block:)`, iff the visited object conforms to `Block`.
-/// 3. `func visit(containerBlock:)`, iff the visited object conforms to `ContainerBlock`.
-/// 4. `func visit(leafBlock:)`, iff the visited object conforms to `LeafBlock`.
-/// 5. `func visit(inline:)`, iff the visited object conforms to `Inline`.
-/// 6. `func visit(<concrete>:)`, where `<concrete>` corresponds to the
-///   the visited object's concrete type.
+/// The default implementation of `func visit(…:)`returns `.inherit`,
+/// resulting in a deep walk over the entire document.
 ///
-/// With each visitation's returned `VisitorContinueKind` overriding the previous one.
+/// ## Sub-type inheritance
 ///
+/// ```plain
+/// Node
+/// ├── Block
+/// │   ├── ContainerBlock
+/// │   │   ├── BlockQuote
+/// │   │   ├── List
+/// │   │   └── List.Item
+/// │   │
+/// │   └── LeafBlock
+/// │       ├── CodeBlock
+/// │       ├── HTMLBlock
+/// │       ├── Heading
+/// │       ├── Paragraph
+/// │       └── ThematicBreak
+/// │
+/// └── Inline
+///     ├── Code
+///     ├── Emphasis
+///     ├── HardLineBreak
+///     ├── Image
+///     ├── Link
+///     ├── RawHTML
+///     ├── SoftLineBreak
+///     ├── Strong
+///     └── Text
+/// ```
+///
+/// ## Order of Visitation
+///
+/// The order of object-wise visitations is: super-type before sub-type.
+///
+/// ## Order of Post-Visitation
+///
+/// The order of object-wise visitations is: sub-type before super-type.
 public protocol Visitor {
     /// The fallback for when `.inherit`
     var defaultContinueKind: VisitorContinueKind { get }
