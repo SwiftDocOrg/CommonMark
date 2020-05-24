@@ -67,9 +67,6 @@ public enum VisitorContinueKind {
 ///
 /// The order of object-wise visitations is: sub-type before super-type.
 public protocol Visitor {
-    /// The fallback for when `.inherit`
-    var defaultContinueKind: VisitorContinueKind { get }
-
     /// Walks a visitable structure.
     /// - Parameter visitable: The structure to walk.
     func walk<T: Visitable>(_ visitable: T)
@@ -158,15 +155,6 @@ public protocol Visitor {
 }
 
 extension Visitor {
-    // Non-overridable default used as last-resort fallback.
-    internal static var defaultContinueKind: VisitorContinueKind {
-        return .visitChildren
-    }
-
-    public var defaultContinueKind: VisitorContinueKind {
-        return Self.defaultContinueKind
-    }
-
     public func walk<T: Visitable>(_ visitable: T) {
         visitable.accept(visitor: self)
     }
@@ -374,21 +362,11 @@ extension Visitor {
         _ visitable: T,
         by visitLeafTypeOf: @autoclosure () -> VisitorContinueKind
     ) -> VisitorContinueKind {
-        let userDefaultContinueKind = self.defaultContinueKind
+        var continueKind = VisitorContinueKind.visitChildren
 
         let inheritedContinueKind = self.visitSuperTypesOf(visitable: visitable)
         let leafTypeContinueKind = visitLeafTypeOf()
 
-        // Abort on debug:
-        assert(
-            userDefaultContinueKind != .inherit,
-            "The default must not be `.inherit`"
-        )
-
-        // Don't rely on the user playing by the rules:
-        var continueKind = Self.defaultContinueKind
-
-        continueKind.override(with: userDefaultContinueKind)
         continueKind.override(with: inheritedContinueKind)
         continueKind.override(with: leafTypeContinueKind)
 
