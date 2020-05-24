@@ -335,10 +335,6 @@ extension Visitor {
     public func visitPost(hardLineBreak: HardLineBreak) {
         // nothing by default
     }
-
-    public func didEndVisit() {
-        // nothing by default
-    }
 }
 
 extension Visitor {
