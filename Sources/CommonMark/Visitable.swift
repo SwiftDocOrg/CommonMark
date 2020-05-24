@@ -102,10 +102,7 @@ extension ThematicBreak: Visitable {
 
 extension Text: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(text: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(text: self))
         visitor.visitPost(text: self)
     }
 }
@@ -142,50 +139,35 @@ extension Link: Visitable {
 
 extension Image: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(image: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(image: self))
         visitor.visitPost(image: self)
     }
 }
 
 extension Code: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(code: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(code: self))
         visitor.visitPost(code: self)
     }
 }
 
 extension RawHTML: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(rawHTML: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(rawHTML: self))
         visitor.visitPost(rawHTML: self)
     }
 }
 
 extension SoftLineBreak: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(softLineBreak: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(softLineBreak: self))
         visitor.visitPost(softLineBreak: self)
     }
 }
 
 extension HardLineBreak: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(hardLineBreak: self))
-        if continueKind == .visitChildren {
-            // type has no visitable children for now
-        }
+        _ = visitor.visit(self, by: visitor.visit(hardLineBreak: self))
         visitor.visitPost(hardLineBreak: self)
     }
 }
