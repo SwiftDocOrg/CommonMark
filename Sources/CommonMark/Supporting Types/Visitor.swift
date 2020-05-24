@@ -5,6 +5,7 @@ public enum VisitorContinueKind {
     /// The visitor should avoid visiting the descendents of the current node.
     case skipChildren
 
+    /// The visitor should inherit the behavior from the current context.
     case inherit
 
     /// The default is `.visitChildren`
