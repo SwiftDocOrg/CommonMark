@@ -20,7 +20,7 @@ public final class Document: Node {
            en-dashes (–) and em-dashes (—)
          - Three consecutive full stops (...) become an ellipsis (…)
          */
-        public static let smart = ParsingOptions(rawValue: CMARK_OPT_SMART)
+        public static let smart = Self(rawValue: CMARK_OPT_SMART)
     }
 
     /// A position within a document.

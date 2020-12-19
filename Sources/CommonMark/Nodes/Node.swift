@@ -154,21 +154,21 @@ public class Node: Codable {
 
          - Important: This option has an effect only when rendering HTML.
          */
-        public static let unsafe = RenderingOptions(rawValue: CMARK_OPT_UNSAFE)
+        public static let unsafe = Self(rawValue: CMARK_OPT_UNSAFE)
 
         /**
          Render softbreak elements as spaces.
 
          - Important: This option has no effect when rendering XML.
          */
-        public static let noBreaks = RenderingOptions(rawValue: CMARK_OPT_NOBREAKS)
+        public static let noBreaks = Self(rawValue: CMARK_OPT_NOBREAKS)
 
         /**
          Render softbreak elements as hard line breaks.
 
          - Important: This option has no effect when rendering XML.
          */
-        public static let hardBreaks = RenderingOptions(rawValue: CMARK_OPT_HARDBREAKS)
+        public static let hardBreaks = Self(rawValue: CMARK_OPT_HARDBREAKS)
 
         /**
          Include a `data-sourcepos` attribute on all block elements
@@ -176,7 +176,7 @@ public class Node: Codable {
 
          - Important: This option has an effect only when rendering HTML or XML.
          */
-        public static let includeSourcePosition = RenderingOptions(rawValue: CMARK_OPT_SOURCEPOS)
+        public static let includeSourcePosition = Self(rawValue: CMARK_OPT_SOURCEPOS)
     }
 
     /**
