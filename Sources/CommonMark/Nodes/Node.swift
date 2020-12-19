@@ -94,6 +94,11 @@ public class Node: Codable {
         }
     }
 
+    internal func unlink(managed: Bool = true) {
+        cmark_node_unlink(self.cmark_node)
+        self.managed = managed
+    }
+
     /// The line and column range of the element in the document.
     public var range: ClosedRange<Document.Position> {
         let start = Document.Position(line: numericCast(cmark_node_get_start_line(cmark_node)), column: numericCast(cmark_node_get_start_column(cmark_node)))
