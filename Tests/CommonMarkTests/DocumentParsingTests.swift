@@ -49,4 +49,72 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(heading.range.upperBound.line, 1)
         XCTAssertEqual(heading.range.upperBound.column, 3)
     }
+
+    // https://github.com/SwiftDocOrg/CommonMark/issues/20
+    func testParseWithoutOptions() throws {
+        let commonmark = """
+        single-dash: -
+        double-dash: --
+        triple-dash: ---
+        single-quote: ''
+        double-quote: ""
+        single-period: .
+        double-period: ..
+        triple-period: ...
+        """
+
+        let document = try Document(commonmark)
+
+        let paragraph = document.children.first as! Paragraph
+        let paragraphText = paragraph.description.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
+        // Without smart options we expect no smart replacements to happen:
+
+        XCTAssertEqual(paragraphText, commonmark)
+    }
+
+    // https://github.com/SwiftDocOrg/CommonMark/issues/20
+    func testParseWithSmartOptions() throws {
+        let commonmark = """
+        single-dash: -
+        double-dash: --
+        triple-dash: ---
+        single-quote: ''
+        double-quote: ""
+        single-period: .
+        double-period: ..
+        triple-period: ...
+        """
+
+        let document = try Document(commonmark, options: [.smart])
+
+        let paragraph = document.children.first as! Paragraph
+        let paragraphText = paragraph.description.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
+        // With smart options we expect the following smart replacements:
+        //
+        // single-dash -> no change
+        // double-dash -> n-dash
+        // triple-dash -> m-dash
+        // single-quote -> curly single quotes
+        // double-quote -> curly double quotes
+        // single-period -> no change
+        // double-period -> no change
+        // triple-period -> ellipsis
+
+        XCTAssertEqual(paragraphText, """
+        single-dash: -
+        double-dash: –
+        triple-dash: —
+        single-quote: ‘’
+        double-quote: “”
+        single-period: .
+        double-period: ..
+        triple-period: …
+        """)
+    }
 }
