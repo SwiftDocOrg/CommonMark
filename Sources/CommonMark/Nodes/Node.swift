@@ -225,8 +225,7 @@ public class Node: Codable {
         switch Self.cmark_node_type {
         case CMARK_NODE_DOCUMENT:
             node = document
-        case CMARK_NODE_DOCUMENT,
-             CMARK_NODE_BLOCK_QUOTE,
+        case CMARK_NODE_BLOCK_QUOTE,
              CMARK_NODE_LIST,
              CMARK_NODE_ITEM,
              CMARK_NODE_CODE_BLOCK,
