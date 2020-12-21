@@ -62,7 +62,7 @@ public final class Document: Node {
         }
 
         self.init(cmark_node)
-        self.managed = managed
+        self.managed = true
     }
 
     public convenience init(children: [Block & Node] = []) {
