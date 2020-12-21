@@ -279,6 +279,10 @@ public class Node: Codable {
     }
 
     private static func extractRootBlock(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        // We need to unlink the children from the given node
+        // so that they can outlive it, or we end up with dangling pointers.
+        // The easiest way to accomplish this is to use `drain()`,
+        // which removes the children from their parent before returning them:
         let documentChildren = document.drain()
         guard let block = documentChildren.first as? Self,
             documentChildren.count == 1
@@ -289,6 +293,10 @@ public class Node: Codable {
     }
 
     private static func extractRootInline(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        // We need to unlink the children from the given node
+        // so that they can outlive it, or we end up with dangling pointers.
+        // The easiest way to accomplish this is to use `drain()`,
+        // which removes the children from their parent before returning them:
         let documentChildren = document.drain()
         guard let paragraph = documentChildren.first as? Paragraph,
             documentChildren.count == 1
@@ -296,6 +304,10 @@ public class Node: Codable {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
         }
 
+        // We need to unlink the children from the given node
+        // so that they can outlive it, or we end up with dangling pointers.
+        // The easiest way to accomplish this is to use `drain()`,
+        // which removes the children from their parent before returning them:
         let paragraphChildren = paragraph.drain()
         guard let inline = paragraphChildren.first as? Self,
             paragraphChildren.count == 1

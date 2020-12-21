@@ -8,7 +8,13 @@ public struct Fragment {
     }
 
     public init(@StringBuilder _ builder: () -> String) {
-        self.init(children: (try? Document(builder()).children) ?? [])
+        let document = try? Document(builder())
+        // We need to unlink the children from `document`
+        // so that they can outlive it, or we end up with dangling pointers.
+        // The easiest way to accomplish this is to use `drain()`,
+        // which removes the children from their parent before returning them:
+        let children = document?.drain() ?? []
+        self.init(children: children)
     }
 
     public init(@CommonMarkBuilder _ builder: () -> BlockConvertible) {
