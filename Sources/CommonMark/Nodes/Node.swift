@@ -241,14 +241,7 @@ public class Node: Codable {
              CMARK_NODE_PARAGRAPH,
              CMARK_NODE_HEADING,
              CMARK_NODE_THEMATIC_BREAK:
-            let documentChildren = document.children
-            guard let block = documentChildren.first as? Self,
-                  documentChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
-            }
-
-            node = block
+            node = try Self.extractRootBlock(from: document, in: container)
         case CMARK_NODE_TEXT,
              CMARK_NODE_SOFTBREAK,
              CMARK_NODE_LINEBREAK,
@@ -259,21 +252,7 @@ public class Node: Codable {
              CMARK_NODE_STRONG,
              CMARK_NODE_LINK,
              CMARK_NODE_IMAGE:
-            let documentChildren = document.children
-            guard let paragraph = documentChildren.first as? Paragraph,
-                documentChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
-            }
-
-            let paragraphChildren = paragraph.children
-            guard let inline = paragraphChildren.first as? Self,
-                paragraphChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
-            }
-
-            node = inline
+            node = try Self.extractRootInline(from: document, in: container)
         default:
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
         }
@@ -288,6 +267,33 @@ public class Node: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(description)
+    }
+
+    private static func extractRootBlock(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        let documentChildren = document.drain()
+        guard let block = documentChildren.first as? Self,
+            documentChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
+        }
+        return block
+    }
+
+    private static func extractRootInline(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        let documentChildren = document.drain()
+        guard let paragraph = documentChildren.first as? Paragraph,
+            documentChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
+        }
+
+        let paragraphChildren = paragraph.drain()
+        guard let inline = paragraphChildren.first as? Self,
+            paragraphChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
+        }
+        return inline
     }
 }
 
