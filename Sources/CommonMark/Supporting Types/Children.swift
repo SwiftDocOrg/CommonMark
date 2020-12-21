@@ -75,6 +75,18 @@ extension ContainerOfBlocks {
         }
     }
 
+    /// Removes the block's children and returns them.
+    public func drain() -> [Block & Node] {
+        var children: [Block & Node] = []
+
+        for child in self.children {
+            remove(child: child)
+            children.append(child)
+        }
+
+        return children
+    }
+
     /**
      Adds a block to the beginning of the block's children.
 
@@ -172,6 +184,18 @@ extension ContainerOfInlineElements {
         }
     }
 
+    /// Removes the block's children and returns them.
+    public func drain() -> [Inline & Node] {
+        var children: [Inline & Node] = []
+
+        for child in self.children {
+            remove(child: child)
+            children.append(child)
+        }
+
+        return children
+    }
+
     /**
      Adds an inline element to the beginning of the block's children.
 
@@ -258,6 +282,18 @@ extension List {
         }
     }
 
+    /// Removes the block's children and returns them.
+    public func drain() -> [Item] {
+        var children: [Item] = []
+
+        for child in self.children {
+            remove(child: child)
+            children.append(child)
+        }
+
+        return children
+    }
+
     /**
      Adds a block to the beginning of the block's children.
 
@@ -342,6 +378,18 @@ extension List.Item {
                 append(child: child)
             }
         }
+    }
+
+    /// Removes the block's children and returns them.
+    public func drain() -> [Node] {
+        var children: [Node] = []
+
+        for child in self.children {
+            remove(child: child)
+            children.append(child)
+        }
+
+        return children
     }
 
     /**
