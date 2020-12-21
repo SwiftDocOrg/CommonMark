@@ -234,7 +234,14 @@ public class Node: Codable {
              CMARK_NODE_PARAGRAPH,
              CMARK_NODE_HEADING,
              CMARK_NODE_THEMATIC_BREAK:
-            node = try Self.rootBlock(of: document, in: container)
+            let documentChildren = document.children
+            guard let block = documentChildren.first as? Self,
+                  documentChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
+            }
+
+            node = block
         case CMARK_NODE_TEXT,
              CMARK_NODE_SOFTBREAK,
              CMARK_NODE_LINEBREAK,
@@ -245,7 +252,21 @@ public class Node: Codable {
              CMARK_NODE_STRONG,
              CMARK_NODE_LINK,
              CMARK_NODE_IMAGE:
-            node = try Self.rootInline(of: document, in: container)
+            let documentChildren = document.children
+            guard let paragraph = documentChildren.first as? Paragraph,
+                documentChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
+            }
+
+            let paragraphChildren = paragraph.children
+            guard let inline = paragraphChildren.first as? Self,
+                paragraphChildren.count == 1
+            else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
+            }
+
+            node = inline
         default:
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
         }
@@ -259,33 +280,6 @@ public class Node: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(description)
-    }
-
-    private static func rootBlock(of document: Document, in container: SingleValueDecodingContainer) throws -> Self {
-        let documentChildren = document.children
-        guard let block = documentChildren.first as? Self,
-            documentChildren.count == 1
-        else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
-        }
-        return block
-    }
-
-    private static func rootInline(of document: Document, in container: SingleValueDecodingContainer) throws -> Self {
-        let documentChildren = document.children
-        guard let paragraph = documentChildren.first as? Paragraph,
-            documentChildren.count == 1
-        else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
-        }
-
-        let paragraphChildren = paragraph.children
-        guard let inline = paragraphChildren.first as? Self,
-            paragraphChildren.count == 1
-        else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
-        }
-        return inline
     }
 }
 
