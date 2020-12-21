@@ -345,6 +345,12 @@ extension Node: Hashable {
 
 extension Node: CustomStringConvertible {
     public var description: String {
-        return String(cString: cmark_render_commonmark(cmark_node, 0, 0))
+        let cString = cmark_render_commonmark(cmark_node, 0, 0)!
+
+        defer {
+            free(cString)
+        }
+
+        return String(cString: cString)
     }
 }
