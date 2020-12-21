@@ -257,10 +257,19 @@ public class Node: Codable {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
         }
 
-        node.unlink()
+        // If the extracted node is not managed, then we most likely
+        // introduced a memory bug in our extraction logic:
+        assert(
+            node.managed,
+            "Expected extracted node to be managed"
+        )
+
+        // Un-assign memory management duties from old owning node:
         node.managed = false
 
         self.init(node.cmark_node)
+
+        // Re-assign memory management duties to new owning node:
         self.managed = true
     }
 
