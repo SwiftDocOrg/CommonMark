@@ -136,6 +136,7 @@ extension ContainerOfBlocks {
     public func remove(child: Block & Node) -> Bool {
         guard child.parent == self else { return false }
         child.unlink()
+
         return true
     }
 }
@@ -232,6 +233,7 @@ extension ContainerOfInlineElements {
     public func remove(child: Inline & Node) -> Bool {
         guard child.parent == self else { return false }
         child.unlink()
+
         return true
     }
 }
@@ -315,9 +317,10 @@ extension List {
      */
     @discardableResult
     public func remove(child: Item) -> Bool {
-         guard child.parent == self else { return false }
-         child.unlink()
-         return true
+        guard child.parent == self else { return false }
+        child.unlink()
+
+        return true
     }
 }
 
@@ -402,6 +405,7 @@ extension List.Item {
     public func remove(child: Node) -> Bool {
         guard child.parent == self else { return false }
         child.unlink()
+
         return true
     }
 }

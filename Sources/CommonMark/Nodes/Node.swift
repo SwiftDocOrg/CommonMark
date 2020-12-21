@@ -94,9 +94,8 @@ public class Node: Codable {
         }
     }
 
-    internal func unlink(managed: Bool = true) {
+    func unlink() {
         cmark_node_unlink(self.cmark_node)
-        self.managed = managed
     }
 
     /// The line and column range of the element in the document.
@@ -271,9 +270,10 @@ public class Node: Codable {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
         }
 
-        node.unlink(managed: false)
-        self.init(node.cmark_node)
+        node.unlink()
+        node.managed = false
 
+        self.init(node.cmark_node)
         self.managed = true
     }
 
