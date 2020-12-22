@@ -290,6 +290,8 @@ public class Node: Codable {
         else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
         }
+
+        assert(block.managed)
         return block
     }
 
@@ -315,6 +317,8 @@ public class Node: Codable {
         else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
         }
+
+        assert(inline.managed)
         return inline
     }
 }
