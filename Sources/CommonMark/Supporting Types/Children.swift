@@ -80,7 +80,7 @@ extension ContainerOfBlocks {
         var children: [Block & Node] = []
 
         for child in self.children {
-            remove(child: child)
+            guard remove(child: child) else { continue }
             children.append(child)
         }
 
@@ -189,7 +189,7 @@ extension ContainerOfInlineElements {
         var children: [Inline & Node] = []
 
         for child in self.children {
-            remove(child: child)
+            guard remove(child: child) else { continue }
             children.append(child)
         }
 
@@ -287,7 +287,7 @@ extension List {
         var children: [Item] = []
 
         for child in self.children {
-            remove(child: child)
+            guard remove(child: child) else { continue }
             children.append(child)
         }
 
@@ -385,7 +385,7 @@ extension List.Item {
         var children: [Node] = []
 
         for child in self.children {
-            remove(child: child)
+            guard remove(child: child) else { continue }
             children.append(child)
         }
 
