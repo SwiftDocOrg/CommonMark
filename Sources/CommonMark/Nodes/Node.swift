@@ -96,6 +96,7 @@ public class Node: Codable {
 
     func unlink() {
         cmark_node_unlink(self.cmark_node)
+        self.managed = true
     }
 
     /// The line and column range of the element in the document.
