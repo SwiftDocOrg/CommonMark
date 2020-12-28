@@ -5,6 +5,7 @@ final class DocumentRenderingTests: XCTestCase {
     func testDocumentCommonMarkRendering() throws {
         let document = try Document(Fixtures.udhr)
 
+        let actual = document.render(format: .commonmark, width: 60)
         let expected = #"""
         # [Universal Declaration of Human Rights](https://www.un.org/en/universal-declaration-human-rights/ "View full version")
 
@@ -16,7 +17,7 @@ final class DocumentRenderingTests: XCTestCase {
 
         """#
 
-        XCTAssertEqual(document.render(format: .commonmark, width: 60), expected)
+        XCTAssertEqual(actual, expected)
     }
 
     func testNodeCommonMarkRendering() throws {
@@ -30,6 +31,7 @@ final class DocumentRenderingTests: XCTestCase {
     func testDocumentHTMLRendering() throws {
         let document = try Document(Fixtures.udhr)
 
+        let actual = document.render(format: .html)
         let expected = #"""
         <h1><a href="https://www.un.org/en/universal-declaration-human-rights/" title="View full version">Universal Declaration of Human Rights</a></h1>
         <h2>Article 1.</h2>
@@ -39,21 +41,24 @@ final class DocumentRenderingTests: XCTestCase {
 
         """#
 
-        XCTAssertEqual(document.render(format: .html), expected)
+        XCTAssertEqual(actual, expected)
     }
 
     func testNodeHTMLRendering() throws {
         let document = try Document(Fixtures.udhr)
 
-        let expected = document.children.map { $0.render(format: .html) }.joined()
         let actual = document.render(format: .html)
+        let expected = document.children.map {
+            $0.render(format: .html)
+        }.joined()
 
-        XCTAssertEqual(expected, actual)
+        XCTAssertEqual(actual, expected)
     }
 
     func testDocumentXMLRendering() throws {
         let document = try Document(Fixtures.udhr)
 
+        let actual = document.render(format: .xml)
         let expected = #"""
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE document SYSTEM "CommonMark.dtd">
@@ -77,12 +82,13 @@ final class DocumentRenderingTests: XCTestCase {
 
         """#
 
-        XCTAssertEqual(document.render(format: .xml), expected)
+        XCTAssertEqual(actual, expected)
     }
 
     func testDocumentLaTeXRendering() throws {
         let document = try Document(Fixtures.udhr)
 
+        let actual = document.render(format: .latex)
         let expected = #"""
         \section{\href{https://www.un.org/en/universal-declaration-human-rights/}{Universal Declaration of Human Rights}}
 
@@ -94,12 +100,13 @@ final class DocumentRenderingTests: XCTestCase {
 
         """#
 
-        XCTAssertEqual(document.render(format: .latex), expected)
+        XCTAssertEqual(actual, expected)
     }
 
     func testDocumentManpageRendering() throws {
         let document = try Document(Fixtures.udhr)
 
+        let actual = document.render(format: .manpage, width: 60)
         let expected = #"""
         .SH
         Universal Declaration of Human
@@ -113,6 +120,6 @@ final class DocumentRenderingTests: XCTestCase {
 
         """#
 
-        XCTAssertEqual(document.render(format: .manpage, width: 60), expected)
+        XCTAssertEqual(actual, expected)
     }
 }
