@@ -19,6 +19,24 @@ final class DocumentRenderingTests: XCTestCase {
         XCTAssertEqual(document.render(format: .commonmark, width: 60), expected)
     }
 
+    // https://github.com/SwiftDocOrg/CommonMark/issues/19
+    func testLinkCommonMarkRendering() throws {
+        let document = try Document(#"""
+        [Universal Declaration of Human Rights](https://www.un.org/en/universal-declaration-human-rights/ "View full version")
+        """#)
+
+        let paragraph = document.children[0] as! Paragraph
+        let link = paragraph.children[0] as! Link
+
+        let actual = link.render(format: .commonmark)
+        let expected = #"""
+        [Universal Declaration of Human Rights](https://www.un.org/en/universal-declaration-human-rights/ "View full version")
+
+        """#
+
+        XCTAssertEqual(actual, expected)
+    }
+
     func testNodeCommonMarkRendering() throws {
         let document = try Document(Fixtures.udhr)
 
