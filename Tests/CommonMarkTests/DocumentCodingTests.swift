@@ -9,10 +9,10 @@ final class DocumentCodingTests: XCTestCase {
         let encoded = try JSONEncoder().encode([document])
         let decoded = try JSONDecoder().decode([Document].self, from: encoded)
 
-        let expected = document.render(format: .html)
         let actual = decoded[0].render(format: .html)
+        let expected = document.render(format: .html)
 
-        XCTAssertEqual(expected, actual)
+        XCTAssertEqual(actual, expected)
     }
 
     func testBlockElementCodingRoundTrip() throws {
@@ -24,10 +24,10 @@ final class DocumentCodingTests: XCTestCase {
         let encoded = try JSONEncoder().encode([heading])
         let decoded = try JSONDecoder().decode([Heading].self, from: encoded)
 
-        let expected = try Document(heading.description).render(format: .html)
         let actual = try Document(decoded[0].description).render(format: .html)
+        let expected = try Document(heading.description).render(format: .html)
 
-        XCTAssertEqual(expected, actual)
+        XCTAssertEqual(actual, expected)
     }
 
     func testInlineElementCodingRoundTrip() throws {
@@ -40,9 +40,9 @@ final class DocumentCodingTests: XCTestCase {
         let encoded = try JSONEncoder().encode([link])
         let decoded = try JSONDecoder().decode([Link].self, from: encoded)
 
-        let expected = try Document(link.description).render(format: .html)
         let actual = try Document(decoded[0].description).render(format: .html)
+        let expected = try Document(link.description).render(format: .html)
 
-        XCTAssertEqual(expected, actual)
+        XCTAssertEqual(actual, expected)
     }
 }
