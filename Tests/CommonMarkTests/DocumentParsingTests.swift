@@ -92,7 +92,10 @@ final class DocumentParsingTests: XCTestCase {
 
         // Without smart options we expect no smart replacements to happen:
 
-        XCTAssertEqual(paragraphText, commonmark)
+        let actual = paragraphText
+        let expected = commonmark
+
+        XCTAssertEqual(actual, expected)
     }
 
     // https://github.com/SwiftDocOrg/CommonMark/issues/20
@@ -126,7 +129,8 @@ final class DocumentParsingTests: XCTestCase {
         // double-period -> no change
         // triple-period -> ellipsis
 
-        XCTAssertEqual(paragraphText, """
+        let actual = paragraphText
+        let expected = """
         single-dash: -
         double-dash: –
         triple-dash: —
@@ -135,6 +139,8 @@ final class DocumentParsingTests: XCTestCase {
         single-period: .
         double-period: ..
         triple-period: …
-        """)
+        """
+
+        XCTAssertEqual(actual, expected)
     }
 }

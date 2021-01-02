@@ -20,7 +20,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample312() throws {
@@ -35,7 +39,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample313() throws {
@@ -50,7 +58,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample314() throws {
@@ -71,7 +83,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample315() throws {
@@ -86,7 +102,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample316() throws {
@@ -101,7 +121,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample317() throws {
@@ -116,7 +140,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample318() throws {
@@ -131,7 +159,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample319() throws {
@@ -148,7 +180,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample320() throws {
@@ -166,7 +202,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample321() throws {
@@ -181,7 +221,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample322() throws {
@@ -197,7 +241,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample323() throws {
@@ -214,7 +262,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample324() throws {
@@ -234,7 +286,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample325() throws {
@@ -251,7 +307,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample326() throws {
@@ -266,7 +326,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample327() throws {
@@ -281,7 +345,11 @@ final class CommonMarkSpecEntityAndNumericCharacterReferencesTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
 }

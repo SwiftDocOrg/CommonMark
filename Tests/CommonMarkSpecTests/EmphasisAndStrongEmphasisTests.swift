@@ -16,7 +16,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample351() throws {
@@ -31,7 +35,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample352() throws {
@@ -46,7 +54,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample353() throws {
@@ -61,7 +73,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample354() throws {
@@ -76,7 +92,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample355() throws {
@@ -91,7 +111,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample356() throws {
@@ -106,7 +130,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample357() throws {
@@ -121,7 +149,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample358() throws {
@@ -136,7 +168,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample359() throws {
@@ -151,7 +187,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample360() throws {
@@ -166,7 +206,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample361() throws {
@@ -181,7 +225,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample362() throws {
@@ -196,7 +244,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample363() throws {
@@ -211,7 +263,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample364() throws {
@@ -226,7 +282,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample365() throws {
@@ -241,7 +301,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample366() throws {
@@ -258,7 +322,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample367() throws {
@@ -273,7 +341,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample368() throws {
@@ -288,7 +360,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample369() throws {
@@ -303,7 +379,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample370() throws {
@@ -318,7 +398,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample371() throws {
@@ -333,7 +417,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample372() throws {
@@ -348,7 +436,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample373() throws {
@@ -363,7 +455,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample374() throws {
@@ -378,7 +474,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample375() throws {
@@ -393,7 +493,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample376() throws {
@@ -408,7 +512,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample377() throws {
@@ -423,7 +531,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample378() throws {
@@ -438,7 +550,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample379() throws {
@@ -453,7 +569,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample380() throws {
@@ -468,7 +588,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample381() throws {
@@ -483,7 +607,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample382() throws {
@@ -498,7 +626,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample383() throws {
@@ -515,7 +647,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample384() throws {
@@ -530,7 +666,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample385() throws {
@@ -545,7 +685,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample386() throws {
@@ -560,7 +704,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample387() throws {
@@ -575,7 +723,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample388() throws {
@@ -590,7 +742,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample389() throws {
@@ -605,7 +761,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample390() throws {
@@ -620,7 +780,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample391() throws {
@@ -635,7 +799,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample392() throws {
@@ -650,7 +818,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample393() throws {
@@ -667,7 +839,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample394() throws {
@@ -682,7 +858,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample395() throws {
@@ -697,7 +877,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample396() throws {
@@ -712,7 +896,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample397() throws {
@@ -727,7 +915,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample398() throws {
@@ -742,7 +934,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample399() throws {
@@ -757,7 +953,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample400() throws {
@@ -772,7 +972,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample401() throws {
@@ -787,7 +991,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample402() throws {
@@ -802,7 +1010,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample403() throws {
@@ -817,7 +1029,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample404() throws {
@@ -834,7 +1050,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample405() throws {
@@ -849,7 +1069,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample406() throws {
@@ -864,7 +1088,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample407() throws {
@@ -879,7 +1107,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample408() throws {
@@ -894,7 +1126,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample409() throws {
@@ -909,7 +1145,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample410() throws {
@@ -924,7 +1164,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample411() throws {
@@ -939,7 +1183,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample412() throws {
@@ -954,7 +1202,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample413() throws {
@@ -969,7 +1221,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample414() throws {
@@ -984,7 +1240,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample415() throws {
@@ -999,7 +1259,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample416() throws {
@@ -1014,7 +1278,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample417() throws {
@@ -1029,7 +1297,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample418() throws {
@@ -1044,7 +1316,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample419() throws {
@@ -1059,7 +1335,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample420() throws {
@@ -1074,7 +1354,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample421() throws {
@@ -1089,7 +1373,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample422() throws {
@@ -1106,7 +1394,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample423() throws {
@@ -1121,7 +1413,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample424() throws {
@@ -1136,7 +1432,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample425() throws {
@@ -1151,7 +1451,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample426() throws {
@@ -1166,7 +1470,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample427() throws {
@@ -1181,7 +1489,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample428() throws {
@@ -1196,7 +1508,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample429() throws {
@@ -1211,7 +1527,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample430() throws {
@@ -1226,7 +1546,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample431() throws {
@@ -1243,7 +1567,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample432() throws {
@@ -1258,7 +1586,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample433() throws {
@@ -1273,7 +1605,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample434() throws {
@@ -1288,7 +1624,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample435() throws {
@@ -1303,7 +1643,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample436() throws {
@@ -1318,7 +1662,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample437() throws {
@@ -1333,7 +1681,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample438() throws {
@@ -1348,7 +1700,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample439() throws {
@@ -1363,7 +1719,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample440() throws {
@@ -1378,7 +1738,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample441() throws {
@@ -1393,7 +1757,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample442() throws {
@@ -1408,7 +1776,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample443() throws {
@@ -1423,7 +1795,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample444() throws {
@@ -1438,7 +1814,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample445() throws {
@@ -1453,7 +1833,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample446() throws {
@@ -1468,7 +1852,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample447() throws {
@@ -1483,7 +1871,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample448() throws {
@@ -1498,7 +1890,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample449() throws {
@@ -1513,7 +1909,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample450() throws {
@@ -1528,7 +1928,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample451() throws {
@@ -1543,7 +1947,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample452() throws {
@@ -1558,7 +1966,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample453() throws {
@@ -1573,7 +1985,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample454() throws {
@@ -1588,7 +2004,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample455() throws {
@@ -1603,7 +2023,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample456() throws {
@@ -1618,7 +2042,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample457() throws {
@@ -1633,7 +2061,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample458() throws {
@@ -1648,7 +2080,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample459() throws {
@@ -1663,7 +2099,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample460() throws {
@@ -1678,7 +2118,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample461() throws {
@@ -1693,7 +2137,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample462() throws {
@@ -1708,7 +2156,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample463() throws {
@@ -1723,7 +2175,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample464() throws {
@@ -1738,7 +2194,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample465() throws {
@@ -1753,7 +2213,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample466() throws {
@@ -1768,7 +2232,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample467() throws {
@@ -1783,7 +2251,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample468() throws {
@@ -1798,7 +2270,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample469() throws {
@@ -1813,7 +2289,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample470() throws {
@@ -1828,7 +2308,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample471() throws {
@@ -1843,7 +2327,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample472() throws {
@@ -1858,7 +2346,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample473() throws {
@@ -1873,7 +2365,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample474() throws {
@@ -1888,7 +2384,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample475() throws {
@@ -1903,7 +2403,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample476() throws {
@@ -1918,7 +2422,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample477() throws {
@@ -1933,7 +2441,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample478() throws {
@@ -1948,7 +2460,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample479() throws {
@@ -1963,7 +2479,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample480() throws {
@@ -1978,7 +2498,11 @@ final class CommonMarkSpecEmphasisAndStrongEmphasisTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
 }

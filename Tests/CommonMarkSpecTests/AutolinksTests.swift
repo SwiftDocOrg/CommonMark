@@ -16,7 +16,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample591() throws {
@@ -31,7 +35,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample592() throws {
@@ -46,7 +54,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample593() throws {
@@ -61,7 +73,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample594() throws {
@@ -76,7 +92,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample595() throws {
@@ -91,7 +111,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample596() throws {
@@ -106,7 +130,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample597() throws {
@@ -121,7 +149,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample598() throws {
@@ -136,7 +168,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample599() throws {
@@ -151,7 +187,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample600() throws {
@@ -166,7 +206,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample601() throws {
@@ -181,7 +225,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample602() throws {
@@ -196,7 +244,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample603() throws {
@@ -211,7 +263,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample604() throws {
@@ -226,7 +282,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample605() throws {
@@ -241,7 +301,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample606() throws {
@@ -256,7 +320,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample607() throws {
@@ -271,7 +339,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
     func testExample608() throws {
@@ -286,7 +358,11 @@ final class CommonMarkSpecAutolinksTests: XCTestCase {
         """#######
 
         let document = try Document(markdown)
-        XCTAssertEqual(document.render(format: .html, options: [.unsafe]), html)
+
+        let actual = document.render(format: .html, options: [.unsafe])
+        let expected = html
+
+        XCTAssertEqual(actual, expected)
     }
 
 }

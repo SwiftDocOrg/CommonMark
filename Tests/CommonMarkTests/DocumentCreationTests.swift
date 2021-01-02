@@ -16,8 +16,9 @@ final class DocumentCreationTests: XCTestCase {
 
         let document = Document(children: [heading, subheading, paragraph])
 
-        let expected = try Document(Fixtures.udhr)
+        let actual = document.description
+        let expected = try Document(Fixtures.udhr).description
 
-        XCTAssertEqual(document.description, expected.description)
+        XCTAssertEqual(actual, expected)
     }
 }
