@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2021-01-14
+
 ### Fixed
 
 - Fixed document parsing options.
@@ -164,7 +166,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release.
 
-[unreleased]: https://github.com/SwiftDocOrg/CommonMark/compare/0.4.0...master
+[unreleased]: https://github.com/SwiftDocOrg/CommonMark/compare/0.5.0...master
+[0.5.0]: https://github.com/SwiftDocOrg/CommonMark/releases/tag/0.5.0
 [0.4.0]: https://github.com/SwiftDocOrg/CommonMark/releases/tag/0.4.0
 [0.3.2]: https://github.com/SwiftDocOrg/CommonMark/releases/tag/0.3.2
 [0.3.1]: https://github.com/SwiftDocOrg/CommonMark/releases/tag/0.3.1
