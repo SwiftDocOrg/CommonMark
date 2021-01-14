@@ -32,7 +32,9 @@ public final class Link: Node {
         }
     }
 
+    #if swift(>=5.4)
     public convenience init(urlString: String?, title: String?, @ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
         self.init(urlString: urlString, title: title, children: builder())
     }
+    #endif
 }

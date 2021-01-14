@@ -1,3 +1,4 @@
+#if swift(>=5.4)
 @resultBuilder
 public struct ListBuilder {
     /// Required by every result builder to build combined results from
@@ -67,3 +68,4 @@ public struct ListBuilder {
         component
     }
 }
+#endif
