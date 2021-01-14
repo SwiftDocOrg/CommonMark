@@ -134,6 +134,19 @@ extension ContainerOfBlocks {
     }
 
     /**
+     Replaces a block with the specified node.
+
+     - Parameters:
+        - child: The block to replace.
+        - replacement: The block to replace the existing block.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Block & Node, with replacement: Block & Node) -> Bool {
+        return add(replacement) { cmark_node_replace(child.cmark_node, replacement.cmark_node) }
+    }
+
+    /**
      Removes a block from the node's children.
 
      - Parameters:
@@ -256,6 +269,19 @@ extension ContainerOfInlineElements {
     }
 
     /**
+     Replaces an inline element with the specified node.
+
+     - Parameters:
+        - child: The inline element to replace.
+        - replacement: The inline element to replace the existing inline element.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Inline & Node, with replacement: Inline & Node) -> Bool {
+        return add(replacement) { cmark_node_replace(child.cmark_node, replacement.cmark_node) }
+    }
+
+    /**
      Removes an inline element from the node's children.
 
      - Parameters:
@@ -365,6 +391,19 @@ extension List {
     }
 
     /**
+     Replaces an item with the specified node.
+
+     - Parameters:
+        - child: The item to replace.
+        - replacement: The item to replace the existing item.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Item, with replacement: Item) -> Bool {
+        return add(replacement) { cmark_node_replace(child.cmark_node, replacement.cmark_node) }
+    }
+
+    /**
      Removes an item from the list.
 
      - Parameters:
@@ -471,6 +510,19 @@ extension List.Item {
     @discardableResult
     public func insert(child: Node, after sibling: Node) -> Bool {
         return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
+    }
+
+    /**
+     Replaces a node with a specified node.
+
+     - Parameters:
+        - child: The node to replace.
+        - replacement: The node to replace the existing node.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Node, with replacement: Node) -> Bool {
+        return add(replacement) { cmark_node_replace(child.cmark_node, replacement.cmark_node) }
     }
 
     /**

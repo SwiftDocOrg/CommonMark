@@ -20,13 +20,33 @@ final class ContainerManipulationTests: XCTestCase {
            political or other opinion, national or social origin, property, birth or other status.
            """#)
         let wasNewParagraphInserted = document.insert(child: newParagraph, after: paragraph)
-
         XCTAssertTrue(wasNewParagraphInserted)
         XCTAssertEqual(document.children.count, 4)
         XCTAssertEqual(newParagraph, document.children[3])
 
+        let replacementParagraph = Paragraph(text:
+            #"""
+            Everyone is entitled to all the rights and freedoms set forth in this Declaration,
+            without distinction of any kind, such as
+            race,
+            colour,
+            sex,
+            language,
+            religion,
+            political or other opinion,
+            national or social origin,
+            property,
+            birth or
+            other status.
+            """#
+            )
+        let wasNewParagraphReplaced = document.replace(child: newParagraph, with: replacementParagraph)
+        XCTAssertTrue(wasNewParagraphReplaced)
+        XCTAssertEqual(document.children.count, 4)
+        XCTAssertEqual(replacementParagraph, document.children[3])
+
         let newSubheading = Heading(level: 2, text: "Article 2.")
-        let wasSubheadingInserted = document.insert(child: newSubheading, before: newParagraph)
+        let wasSubheadingInserted = document.insert(child: newSubheading, before: replacementParagraph)
         XCTAssertTrue(wasSubheadingInserted)
         XCTAssertEqual(document.children.count, 5)
         XCTAssertEqual(newSubheading, document.children[3])
