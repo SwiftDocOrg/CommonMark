@@ -52,7 +52,9 @@ fileprivate func add<Child: Node>(_ child: Child, with operation: () -> Int32) -
 
 // MARK: -
 
-public protocol ContainerOfBlocks: Node {}
+public protocol ContainerOfBlocks: Node {
+    var children: [Block & Node] { get }
+}
 
 extension Document: ContainerOfBlocks {}
 extension BlockQuote: ContainerOfBlocks {}
@@ -166,7 +168,9 @@ extension ContainerOfBlocks {
 
 // MARK: -
 
-public protocol ContainerOfInlineElements: Node {}
+public protocol ContainerOfInlineElements: Node {
+    var children: [Inline & Node] { get }
+}
 
 extension Heading: ContainerOfInlineElements {}
 extension Paragraph: ContainerOfInlineElements {}
