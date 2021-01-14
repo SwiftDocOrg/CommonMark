@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fixed document parsing options.
   #21 by @regexident.
+- Fixed memory leaks.
+  #22 by @regexident.
 
 ## [0.4.0] - 2020-05-01
 

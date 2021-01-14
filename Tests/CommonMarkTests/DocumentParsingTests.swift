@@ -35,6 +35,26 @@ final class DocumentParsingTests: XCTestCase {
         XCTAssertEqual(paragraph.parent, document)
     }
 
+    // https://github.com/SwiftDocOrg/CommonMark/issues/19
+    func testLinkParsing() throws {
+        let document = try Document(#"""
+        [Universal Declaration of Human Rights](https://www.un.org/en/universal-declaration-human-rights/ "View full version")
+        """#)
+
+        let paragraph = document.children[0] as! Paragraph
+        XCTAssertEqual(paragraph.children.count, 1)
+        XCTAssertEqual(paragraph.parent, document)
+
+        let link = paragraph.children[0] as! Link
+        XCTAssertEqual(link.urlString, "https://www.un.org/en/universal-declaration-human-rights/")
+        XCTAssertEqual(link.title, "View full version")
+        XCTAssertEqual(link.parent, paragraph)
+
+        let text = link.children[0] as! Text
+        XCTAssertEqual(text.literal, "Universal Declaration of Human Rights")
+        XCTAssertEqual(text.parent, link)
+    }
+
     // https://github.com/SwiftDocOrg/CommonMark/issues/1
     func testInvalidRange() throws {
         let commonmark = "* #"

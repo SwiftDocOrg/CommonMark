@@ -57,11 +57,13 @@ public final class Document: Node {
           if a document couldn't be constructed with the provided source.
      */
     public convenience init(_ commonmark: String, options: ParsingOptions = []) throws {
-        guard let cmark_node = cmark_parse_document(commonmark, commonmark.utf8.count, options.rawValue) else {
+        guard let cmark_node = cmark_parse_document(commonmark, commonmark.utf8.count, options.rawValue)
+        else {
             throw Error.invalid
         }
 
         self.init(cmark_node)
+        self.managed = true
     }
 
     public convenience init(children: [Block & Node] = []) {

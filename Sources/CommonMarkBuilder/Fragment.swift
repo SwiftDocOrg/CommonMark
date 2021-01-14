@@ -8,7 +8,10 @@ public struct Fragment {
     }
 
     public init(@StringBuilder _ builder: () -> String) {
-        self.init(children: (try? Document(builder()).children) ?? [])
+        let document = try? Document(builder())
+        // Unlink the children from the document node to prevent dangling pointers to the parent.
+        let children = document?.removeChildren() ?? []
+        self.init(children: children)
     }
 
     public init(@CommonMarkBuilder _ builder: () -> BlockConvertible) {

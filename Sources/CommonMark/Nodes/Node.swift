@@ -94,6 +94,11 @@ public class Node: Codable {
         }
     }
 
+    func unlink() {
+        cmark_node_unlink(self.cmark_node)
+        self.managed = true
+    }
+
     /// The line and column range of the element in the document.
     public var range: ClosedRange<Document.Position> {
         let start = Document.Position(line: numericCast(cmark_node_get_start_line(cmark_node)), column: numericCast(cmark_node_get_start_column(cmark_node)))
@@ -194,18 +199,26 @@ public class Node: Codable {
     public func render(format: RenderingFormat, options: RenderingOptions = [], width: Int = 0) -> String {
         precondition(width >= 0)
 
+        let cString: UnsafeMutablePointer<CChar>
+
         switch format {
         case .commonmark:
-            return String(cString: cmark_render_commonmark(cmark_node, options.rawValue, Int32(clamping: width)))
+            cString = cmark_render_commonmark(cmark_node, options.rawValue, Int32(clamping: width))
         case .html:
-            return String(cString: cmark_render_html(cmark_node, options.rawValue))
+            cString = cmark_render_html(cmark_node, options.rawValue)
         case .xml:
-            return String(cString: cmark_render_xml(cmark_node, options.rawValue))
+            cString = cmark_render_xml(cmark_node, options.rawValue)
         case .latex:
-            return String(cString: cmark_render_latex(cmark_node, options.rawValue, Int32(clamping: width)))
+            cString = cmark_render_latex(cmark_node, options.rawValue, Int32(clamping: width))
         case .manpage:
-            return String(cString: cmark_render_man(cmark_node, options.rawValue, Int32(clamping: width)))
+            cString = cmark_render_man(cmark_node, options.rawValue, Int32(clamping: width))
         }
+
+        defer {
+            free(cString)
+        }
+
+        return String(cString: cString)
     }
 
     // MARK: - Codable
@@ -214,12 +227,13 @@ public class Node: Codable {
         let container = try decoder.singleValueContainer()
         let commonmark = try container.decode(String.self)
 
+        let document = try Document(commonmark, options: [])
+        let node: Node
+
         switch Self.cmark_node_type {
         case CMARK_NODE_DOCUMENT:
-            let document = try Document(commonmark, options: [])
-            self.init(document.cmark_node)
-        case CMARK_NODE_DOCUMENT,
-             CMARK_NODE_BLOCK_QUOTE,
+            node = document
+        case CMARK_NODE_BLOCK_QUOTE,
              CMARK_NODE_LIST,
              CMARK_NODE_ITEM,
              CMARK_NODE_CODE_BLOCK,
@@ -228,15 +242,7 @@ public class Node: Codable {
              CMARK_NODE_PARAGRAPH,
              CMARK_NODE_HEADING,
              CMARK_NODE_THEMATIC_BREAK:
-            let document = try Document(commonmark, options: [])
-            let documentChildren = document.children
-            guard let block = documentChildren.first as? Self,
-                documentChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
-            }
-
-            self.init(block.cmark_node)
+            node = try Self.extractRootBlock(from: document, in: container)
         case CMARK_NODE_TEXT,
              CMARK_NODE_SOFTBREAK,
              CMARK_NODE_LINEBREAK,
@@ -247,30 +253,64 @@ public class Node: Codable {
              CMARK_NODE_STRONG,
              CMARK_NODE_LINK,
              CMARK_NODE_IMAGE:
-            let document = try Document(commonmark, options: [])
-            let documentChildren = document.children
-            guard let paragraph = documentChildren.first as? Paragraph,
-                documentChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
-            }
-
-            let paragraphChildren = paragraph.children
-            guard let inline = paragraphChildren.first as? Self,
-                paragraphChildren.count == 1
-            else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
-            }
-
-            self.init(inline.cmark_node)
+            node = try Self.extractRootInline(from: document, in: container)
         default:
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "unsupported node type")
         }
+
+        // If the extracted node is not managed, then we most likely
+        // introduced a memory bug in our extraction logic:
+        assert(
+            node.managed,
+            "Expected extracted node to be managed"
+        )
+
+        // Un-assign memory management duties from old owning node:
+        node.managed = false
+
+        self.init(node.cmark_node)
+
+        // Re-assign memory management duties to new owning node:
+        self.managed = true
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(description)
+    }
+
+    private static func extractRootBlock(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        // Unlink the children from the document node to prevent dangling pointers to the parent.
+        let documentChildren = document.removeChildren()
+        guard let block = documentChildren.first as? Self,
+            documentChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single block node")
+        }
+
+        assert(block.managed)
+        return block
+    }
+
+    private static func extractRootInline(from document: Document, in container: SingleValueDecodingContainer) throws -> Self {
+        // Unlink the children from the document node to prevent dangling pointers to the parent.
+        let documentChildren = document.removeChildren()
+        guard let paragraph = documentChildren.first as? Paragraph,
+            documentChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single paragraph node")
+        }
+
+        // Unlink the children from the root node to prevent dangling pointers to the parent.
+        let paragraphChildren = paragraph.removeChildren()
+        guard let inline = paragraphChildren.first as? Self,
+            paragraphChildren.count == 1
+        else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected single inline node")
+        }
+
+        assert(inline.managed)
+        return inline
     }
 }
 
@@ -286,8 +326,14 @@ extension Node: Equatable {
 
 extension Node: Hashable {
     public func hash(into hasher: inout Hasher) {
+        let cString = cmark_render_commonmark(cmark_node, 0, 0)!
+
+        defer {
+            free(cString)
+        }
+
         hasher.combine(cmark_node_get_type(cmark_node).rawValue)
-        hasher.combine(cmark_render_commonmark(cmark_node, 0, 0))
+        hasher.combine(cString)
     }
 }
 
@@ -295,6 +341,6 @@ extension Node: Hashable {
 
 extension Node: CustomStringConvertible {
     public var description: String {
-        return String(cString: cmark_render_commonmark(cmark_node, 0, 0))
+        self.render(format: .commonmark)
     }
 }
