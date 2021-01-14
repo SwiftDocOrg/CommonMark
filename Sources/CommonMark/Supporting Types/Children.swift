@@ -174,7 +174,6 @@ public protocol ContainerOfInlineElements: Node {
 
 extension Heading: ContainerOfInlineElements {}
 extension Paragraph: ContainerOfInlineElements {}
-extension HTMLBlock: ContainerOfInlineElements {}
 extension CodeBlock: ContainerOfInlineElements {}
 extension ThematicBreak: ContainerOfInlineElements {}
 extension Strong: ContainerOfInlineElements {}

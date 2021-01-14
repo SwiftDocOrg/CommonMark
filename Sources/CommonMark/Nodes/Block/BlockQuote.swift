@@ -21,4 +21,8 @@ public final class BlockQuote: Node {
             append(child: child)
         }
     }
+
+    public convenience init(@ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
+        self.init(children: builder())
+    }
 }

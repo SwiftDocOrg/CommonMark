@@ -17,4 +17,8 @@ public final class Code: Node {
         self.init()
         self.literal = literal
     }
+
+    public convenience init(_ block: () -> String?) {
+        self.init(literal: block())
+    }
 }

@@ -10,11 +10,7 @@ let package = Package(
         .library(
             name: "CommonMark",
             targets: ["CommonMark"]
-        ),
-        .library(
-            name: "CommonMarkBuilder",
-            targets: ["CommonMarkBuilder"]
-        ),
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -27,10 +23,6 @@ let package = Package(
             name: "CommonMark",
             dependencies: ["cmark"]
         ),
-        .target(
-            name: "CommonMarkBuilder",
-            dependencies: ["CommonMark"]
-        ),
         .testTarget(
             name: "CommonMarkTests",
             dependencies: ["CommonMark"]
@@ -38,10 +30,6 @@ let package = Package(
         .testTarget(
             name: "CommonMarkSpecTests",
             dependencies: ["CommonMark"]
-        ),
-        .testTarget(
-            name: "CommonMarkBuilderTests",
-            dependencies: ["CommonMarkBuilder", "CommonMark" /* , "CommonMarkTests" */ ]
-        ),
+        )
     ]
 )
