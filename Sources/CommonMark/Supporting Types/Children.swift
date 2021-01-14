@@ -82,7 +82,7 @@ extension ContainerOfBlocks {
     }
 
     /**
-     Adds a block to the beginning of the block's children.
+     Adds a block to the beginning of the node's children.
 
      - Parameters:
         - child: The block to add.
@@ -94,7 +94,7 @@ extension ContainerOfBlocks {
     }
 
     /**
-     Adds a block to the end of the block's children.
+     Adds a block to the end of the node's children.
 
      - Parameters:
         - child: The block to add.
@@ -106,7 +106,7 @@ extension ContainerOfBlocks {
     }
 
     /**
-     Inserts a block to the block's children before a specified sibling.
+     Inserts a block to the node's children before a specified sibling.
 
      - Parameters:
         - child: The block to add.
@@ -119,7 +119,7 @@ extension ContainerOfBlocks {
     }
 
     /**
-     Inserts a block to the block's children after a specified sibling.
+     Inserts a block to the node's children after a specified sibling.
 
      - Parameters:
         - child: The block to add.
@@ -132,7 +132,7 @@ extension ContainerOfBlocks {
     }
 
     /**
-     Removes a block from the block's children.
+     Removes a block from the node's children.
 
      - Parameters:
         - child: The block to remove.
@@ -202,7 +202,7 @@ extension ContainerOfInlineElements {
     }
 
     /**
-     Adds an inline element to the beginning of the block's children.
+     Adds an inline element to the beginning of the node's children.
 
      - Parameters:
         - child: The inline element to add.
@@ -214,7 +214,7 @@ extension ContainerOfInlineElements {
     }
 
     /**
-     Adds an inline element to the end of the block's children.
+     Adds an inline element to the end of the node's children.
 
      - Parameters:
         - child: The inline element to add.
@@ -226,7 +226,7 @@ extension ContainerOfInlineElements {
     }
 
     /**
-     Inserts an inline element to the block's children before a specified sibling.
+     Inserts an inline element to the node's children before a specified sibling.
 
      - Parameters:
         - child: The inline element to add.
@@ -239,7 +239,7 @@ extension ContainerOfInlineElements {
     }
 
     /**
-     Inserts an inline element to the block's children after a specified sibling.
+     Inserts an inline element to the node's children after a specified sibling.
 
      - Parameters:
         - child: The inline element to add.
@@ -252,7 +252,7 @@ extension ContainerOfInlineElements {
     }
 
     /**
-     Removes an inline element from the block's children.
+     Removes an inline element from the node's children.
 
      - Parameters:
         - child: The inline element to remove.
@@ -311,10 +311,10 @@ extension List {
     }
 
     /**
-     Adds a block to the beginning of the block's children.
+     Adds an item to the beginning of the list.
 
      - Parameters:
-        - child: The block to add.
+        - child: The item to add.
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
@@ -323,10 +323,10 @@ extension List {
     }
 
     /**
-     Adds a block to the end of the block's children.
+     Adds an to the end of the list.
 
      - Parameters:
-        - child: The block to add.
+        - child: The item to add.
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -335,11 +335,11 @@ extension List {
     }
 
     /**
-     Inserts a block to the block's children before a specified sibling.
+     Inserts an item to the list before a specified sibling.
 
      - Parameters:
-        - child: The block to add.
-        - sibling: The child before which the block is added
+        - child: The item to add.
+        - sibling: The item before which the new item is added
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -348,11 +348,11 @@ extension List {
     }
 
     /**
-     Inserts a block to the block's children after a specified sibling.
+     Inserts an item to the list after a specified sibling.
 
      - Parameters:
-        - child: The block to add.
-        - sibling: The child after which the block is added
+        - child: The item to add.
+        - sibling: The item after which the new item is added
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -361,10 +361,10 @@ extension List {
     }
 
     /**
-     Removes a block from the block's children.
+     Removes an item from the list.
 
      - Parameters:
-        - child: The block to remove.
+        - child: The item to remove.
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
@@ -423,7 +423,7 @@ extension List.Item {
      Adds a node to the beginning of the list item's children.
 
      - Parameters:
-        - child: The block to add.
+        - child: The node to add.
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
@@ -435,7 +435,7 @@ extension List.Item {
      Adds a node to the end of the list item's children.
 
      - Parameters:
-        - child: The block to add.
+        - child: The node to add.
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -447,8 +447,8 @@ extension List.Item {
      Inserts a node to the list item's children before a specified sibling.
 
      - Parameters:
-        - child: The block to add.
-        - sibling: The child before which the block is added
+        - child: The node to add.
+        - sibling: The child before which the node is added
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -460,8 +460,8 @@ extension List.Item {
      Inserts a node to the list item's children after a specified sibling.
 
      - Parameters:
-        - child: The block to add.
-        - sibling: The child after which the block is added
+        - child: The node to add.
+        - sibling: The child after which the node is added
      - Returns: `true` if successful, otherwise `false`.
     */
     @discardableResult
@@ -473,7 +473,7 @@ extension List.Item {
      Removes a node from the list item's children.
 
      - Parameters:
-        - child: The block to remove.
+        - child: The node to remove.
      - Returns: `true` if successful, otherwise `false`.
      */
     @discardableResult
