@@ -21,4 +21,8 @@ public final class Strong: Node {
             append(child: child)
         }
     }
+
+    public convenience init(@ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
+        self.init(children: builder())
+    }
 }

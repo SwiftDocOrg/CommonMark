@@ -31,4 +31,8 @@ public final class Link: Node {
             append(child: child)
         }
     }
+
+    public convenience init(urlString: String?, title: String?, @ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
+        self.init(urlString: urlString, title: title, children: builder())
+    }
 }

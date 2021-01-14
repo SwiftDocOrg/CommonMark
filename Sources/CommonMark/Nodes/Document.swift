@@ -73,6 +73,10 @@ public final class Document: Node {
             append(child: child)
         }
     }
+
+    public convenience init(options: ParsingOptions = [], @ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
+        self.init(children: builder())
+    }
 }
 
 // MARK: - Comparable
