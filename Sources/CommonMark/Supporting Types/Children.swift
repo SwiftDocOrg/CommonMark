@@ -58,7 +58,13 @@ extension Document: ContainerOfBlocks {}
 extension BlockQuote: ContainerOfBlocks {}
 
 extension ContainerOfBlocks {
-    /// The block's children.
+    /**
+     The block elements contained by the node.
+
+     - Important: The returned child nodes are valid only during the lifetime of their parent.
+                  Use the `removeChildren()` method to detach and access children
+                  beyond the lifetime of their parent.
+     */
     public var children: [Block & Node] {
         get {
             return Children(of: self).compactMap { $0 as? Block & Node }
@@ -73,18 +79,6 @@ extension ContainerOfBlocks {
                 append(child: child)
             }
         }
-    }
-
-    /// Removes the block's children and returns them.
-    public func drain() -> [Block & Node] {
-        var children: [Block & Node] = []
-
-        for child in self.children {
-            guard remove(child: child) else { continue }
-            children.append(child)
-        }
-
-        return children
     }
 
     /**
@@ -151,6 +145,23 @@ extension ContainerOfBlocks {
 
         return true
     }
+
+    /**
+     Removes and returns the node's children.
+
+     - Returns: An array of block structure elements.
+     */
+    @discardableResult
+    public func removeChildren() -> [Block & Node] {
+        var children: [Block & Node] = []
+
+        for child in self.children {
+            guard remove(child: child) else { continue }
+            children.append(child)
+        }
+
+        return children
+    }
 }
 
 // MARK: -
@@ -167,7 +178,13 @@ extension Emphasis: ContainerOfInlineElements {}
 extension Link: ContainerOfInlineElements {}
 
 extension ContainerOfInlineElements {
-    /// The block's children.
+    /**
+     The inline elements contained by the node.
+
+     - Important: The returned child nodes are valid only during the lifetime of their parent.
+                  Use the `removeChildren()` method to detach and access children
+                  beyond the lifetime of their parent.
+     */
     public var children: [Inline & Node] {
         get {
             return Children(of: self).compactMap { $0 as? Inline & Node }
@@ -182,18 +199,6 @@ extension ContainerOfInlineElements {
                 append(child: child)
             }
         }
-    }
-
-    /// Removes the block's children and returns them.
-    public func drain() -> [Inline & Node] {
-        var children: [Inline & Node] = []
-
-        for child in self.children {
-            guard remove(child: child) else { continue }
-            children.append(child)
-        }
-
-        return children
     }
 
     /**
@@ -260,12 +265,35 @@ extension ContainerOfInlineElements {
 
         return true
     }
+
+    /**
+     Removes and returns the node's children.
+
+     - Returns: An array of inline content elements.
+     */
+    @discardableResult
+    public func removeChildren() -> [Inline & Node] {
+        var children: [Inline & Node] = []
+
+        for child in self.children {
+            guard remove(child: child) else { continue }
+            children.append(child)
+        }
+
+        return children
+    }
 }
 
 // MARK: -
 
 extension List {
-    /// The block's children.
+    /**
+     The list's items.
+
+     - Important: The returned child nodes are valid only during the lifetime of their parent.
+                  Use the `removeChildren()` method to detach and access children
+                  beyond the lifetime of their parent.
+     */
     public var children: [Item] {
         get {
             return Children(of: self).compactMap { $0 as? Item }
@@ -280,18 +308,6 @@ extension List {
                 append(child: child)
             }
         }
-    }
-
-    /// Removes the block's children and returns them.
-    public func drain() -> [Item] {
-        var children: [Item] = []
-
-        for child in self.children {
-            guard remove(child: child) else { continue }
-            children.append(child)
-        }
-
-        return children
     }
 
     /**
@@ -358,12 +374,35 @@ extension List {
 
         return true
     }
+
+    /**
+     Removes and returns the list's items.
+
+     - Returns: An array of list items.
+     */
+    @discardableResult
+    public func removeChildren() -> [Item] {
+        var children: [Item] = []
+
+        for child in self.children {
+            guard remove(child: child) else { continue }
+            children.append(child)
+        }
+
+        return children
+    }
 }
 
 // MARK: -
 
 extension List.Item {
-    /// The list item's children.
+    /**
+     The elements contained by the list item.
+
+     - Important: The returned child nodes are valid only during the lifetime of their parent.
+                  Use the `removeChildren()` method to detach and access children
+                  beyond the lifetime of their parent.
+     */
     public var children: [Node] {
         get {
             return Children(of: self).map { $0 }
@@ -378,18 +417,6 @@ extension List.Item {
                 append(child: child)
             }
         }
-    }
-
-    /// Removes the block's children and returns them.
-    public func drain() -> [Node] {
-        var children: [Node] = []
-
-        for child in self.children {
-            guard remove(child: child) else { continue }
-            children.append(child)
-        }
-
-        return children
     }
 
     /**
@@ -455,5 +482,21 @@ extension List.Item {
         child.unlink()
 
         return true
+    }
+
+    /**
+     Removes and returns the list item's children.
+
+     - Returns: An array of nodes.
+     */
+    public func removeChildren() -> [Node] {
+        var children: [Node] = []
+
+        for child in self.children {
+            guard remove(child: child) else { continue }
+            children.append(child)
+        }
+
+        return children
     }
 }
