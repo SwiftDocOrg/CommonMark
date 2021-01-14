@@ -115,6 +115,7 @@ public final class List: Node {
         }
     }
 
+    #if swift(>=5.4)
     public convenience init(delimiter: Delimiter = .none, tight: Bool = true, @ListBuilder _ builder: () -> [List.Item]) {
         self.init(delimiter: delimiter, children: builder())
         self.tight = tight
@@ -124,6 +125,7 @@ public final class List: Node {
         self.init(delimiter: delimiter, children: values.flatMap { builder($0) })
         self.tight = tight
     }
+    #endif
 }
 
 extension List {
@@ -142,6 +144,7 @@ extension List {
             }
         }
 
+        #if swift(>=5.4)
         public convenience init(@ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
             self.init(children: builder())
         }
@@ -149,5 +152,6 @@ extension List {
         public convenience init(@ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
             self.init(children: builder())
         }
+        #endif
     }
 }

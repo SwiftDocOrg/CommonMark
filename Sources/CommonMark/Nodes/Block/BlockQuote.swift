@@ -22,7 +22,9 @@ public final class BlockQuote: Node {
         }
     }
 
+    #if swift(>=5.4)
     public convenience init(@ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
         self.init(children: builder())
     }
+    #endif
 }

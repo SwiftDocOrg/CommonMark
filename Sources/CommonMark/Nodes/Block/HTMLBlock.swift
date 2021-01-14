@@ -18,6 +18,7 @@ public final class HTMLBlock: Node {
         self.literal = literal
     }
 
+    #if swift(>=5.4)
     public static func wrap(
         @ContainerOfBlocksBuilder _ body: () -> [Block & Node],
         before: () -> String?,
@@ -31,4 +32,5 @@ public final class HTMLBlock: Node {
 
         return blocks
     }
+    #endif
 }

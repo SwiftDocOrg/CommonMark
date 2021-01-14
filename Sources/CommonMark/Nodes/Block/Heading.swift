@@ -62,7 +62,9 @@ public final class Heading: Node {
         }
     }
 
+    #if swift(>=5.4)
     public convenience init(level: Int = 1, @ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
         self.init(level: level, children: builder())
     }
+    #endif
 }

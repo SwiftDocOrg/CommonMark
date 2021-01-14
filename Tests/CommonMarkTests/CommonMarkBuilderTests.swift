@@ -1,6 +1,7 @@
 import XCTest
 import CommonMark
 
+#if swift(>=5.4)
 final class CommonMarkBuilderTests: XCTestCase {
     func testCommonMarkBuilder() throws {
         let urlString: String? = "https://www.un.org/en/universal-declaration-human-rights/"
@@ -102,3 +103,4 @@ final class CommonMarkBuilderTests: XCTestCase {
         XCTAssertEqual(expected, actual)
     }
 }
+#endif

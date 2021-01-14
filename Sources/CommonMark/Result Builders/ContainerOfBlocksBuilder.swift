@@ -1,3 +1,4 @@
+#if swift(>=5.4)
 @resultBuilder
 public struct ContainerOfBlocksBuilder {
     /// Required by every result builder to build combined results from
@@ -65,3 +66,4 @@ public struct ContainerOfBlocksBuilder {
         component
     }
 }
+#endif

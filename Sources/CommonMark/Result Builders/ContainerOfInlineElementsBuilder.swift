@@ -1,3 +1,4 @@
+#if swift(>=5.4)
 @resultBuilder
 public struct ContainerOfInlineElementsBuilder {
     /// Required by every result builder to build combined results from
@@ -55,3 +56,4 @@ public struct ContainerOfInlineElementsBuilder {
         component
     }
 }
+#endif
