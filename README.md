@@ -71,20 +71,18 @@ document.description // # [Universal  [ ... ]
 
 ### Creating Documents From Scratch
 
-#### Using Function Builders
+#### Using Result Builders
 
-To use this interface,
-add `"CommonMarkBuilder"` to your package's dependencies
-and replace `import CommonMark` with `import CommonMarkBuilder`
-as needed.
+In Swift 5.4 and later,
+you can create CommonMark documents using `@resultBuilder` initializers.
 
 ```swift
-import CommonMarkBuilder
+import CommonMark
 
 let document = Document {
     Heading {
-        Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/" as String?,
-                title: "View full version" as String?) // explicit type annotations to work around apparent compiler bug
+        Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/",
+                title: "View full version")
         {
             "Universal Declaration of Human Rights"
         }
@@ -94,20 +92,22 @@ let document = Document {
         Heading { "Article 1." } // this is a second-level heading
     }
 
-    Fragment { // fragments embed rendered CommonMark text
-        """
-        **All** human beings are born free and equal in dignity and rights.
-        They are endowed with reason and conscience
-        and should act towards one another in a spirit of brotherhood.
-        """
-    }
+    // block-level strings are parsed as CommonMark literals
+    """
+    **All** human beings are born free and equal in dignity and rights.
+    They are endowed with reason and conscience
+    and should act towards one another in a spirit of brotherhood.
+    """
 }
 ```
 
 #### Using the Conventional Approach
 
+The following code produces the same result as the preceding example,
+using conventional Swift initializers.
+
 ```swift
-let link = Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/", 
+let link = Link(urlString: "https://www.un.org/en/universal-declaration-human-rights/",
                 title: "View full version", 
                 text: "Universal Declaration of Human Rights")
 let heading = Heading(level: 1, children: [link])
