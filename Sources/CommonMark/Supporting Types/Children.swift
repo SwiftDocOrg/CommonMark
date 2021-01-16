@@ -535,9 +535,10 @@ extension List.Item {
     @discardableResult
     public func append(child: Node) -> Bool {
         guard cmark_node_append_child(cmark_node, child.cmark_node) == 1 else { return false }
+        
         child.managed = false
+        
         return true
-
     }
 
     /**
