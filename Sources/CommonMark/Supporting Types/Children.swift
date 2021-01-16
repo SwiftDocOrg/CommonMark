@@ -36,22 +36,6 @@ struct CMarkNodeChildIterator: IteratorProtocol {
 
 // MARK: -
 
-fileprivate func add<Child: Node>(_ child: Child, with operation: () -> Int32) -> Bool {
-    let status = operation()
-    switch status {
-    case 1:
-        child.managed = false
-        return true
-    case 0:
-        return false
-    default:
-        assertionFailure("unexpected status code: \(status)")
-        return false
-    }
-}
-
-// MARK: -
-
 public protocol ContainerOfBlocks: Node {
     var children: [Block & Node] { get }
 }
@@ -92,7 +76,11 @@ extension ContainerOfBlocks {
      */
     @discardableResult
     public func prepend(child: Block & Node) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
+        guard cmark_node_prepend_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -104,7 +92,11 @@ extension ContainerOfBlocks {
     */
     @discardableResult
     public func append(child: Block & Node) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
+        guard cmark_node_append_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -117,7 +109,11 @@ extension ContainerOfBlocks {
     */
     @discardableResult
     public func insert(child: Block & Node, before sibling: Block & Node) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_before(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -130,7 +126,29 @@ extension ContainerOfBlocks {
     */
     @discardableResult
     public func insert(child: Block & Node, after sibling: Block & Node) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_after(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
+    }
+
+    /**
+     Replaces a block with the specified node.
+
+     - Parameters:
+        - child: The block to replace.
+        - replacement: The block to replace the existing block.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Block & Node, with replacement: Block & Node) -> Bool {
+        guard cmark_node_replace(child.cmark_node, replacement.cmark_node) == 1 else { return false }
+
+        replacement.managed = false
+        child.managed = true
+
+        return true
     }
 
     /**
@@ -143,6 +161,7 @@ extension ContainerOfBlocks {
     @discardableResult
     public func remove(child: Block & Node) -> Bool {
         guard child.parent == self else { return false }
+
         child.unlink()
 
         return true
@@ -214,7 +233,11 @@ extension ContainerOfInlineElements {
      */
     @discardableResult
     public func prepend(child: Inline & Node) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
+        guard cmark_node_prepend_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -226,7 +249,11 @@ extension ContainerOfInlineElements {
     */
     @discardableResult
     public func append(child: Inline & Node) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
+        guard cmark_node_append_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -239,7 +266,11 @@ extension ContainerOfInlineElements {
     */
     @discardableResult
     public func insert(child: Inline & Node, before sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_before(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -252,7 +283,29 @@ extension ContainerOfInlineElements {
     */
     @discardableResult
     public func insert(child: Inline & Node, after sibling: Inline & Node) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_after(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
+    }
+
+    /**
+     Replaces an inline element with the specified node.
+
+     - Parameters:
+        - child: The inline element to replace.
+        - replacement: The inline element to replace the existing inline element.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Inline & Node, with replacement: Inline & Node) -> Bool {
+        guard cmark_node_replace(child.cmark_node, replacement.cmark_node) == 1 else { return false }
+
+        replacement.managed = false
+        child.managed = true
+
+        return true
     }
 
     /**
@@ -265,6 +318,7 @@ extension ContainerOfInlineElements {
     @discardableResult
     public func remove(child: Inline & Node) -> Bool {
         guard child.parent == self else { return false }
+
         child.unlink()
 
         return true
@@ -323,7 +377,11 @@ extension List {
      */
     @discardableResult
     public func prepend(child: Item) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
+        guard cmark_node_prepend_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -335,7 +393,11 @@ extension List {
     */
     @discardableResult
     public func append(child: Item) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
+        guard cmark_node_append_child(cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -348,7 +410,11 @@ extension List {
     */
     @discardableResult
     public func insert(child: Item, before sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_before(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
     }
 
     /**
@@ -361,7 +427,29 @@ extension List {
     */
     @discardableResult
     public func insert(child: Item, after sibling: Item) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_after(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+
+        child.managed = false
+
+        return true
+    }
+
+    /**
+     Replaces an item with the specified node.
+
+     - Parameters:
+        - child: The item to replace.
+        - replacement: The item to replace the existing item.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Item, with replacement: Item) -> Bool {
+        guard cmark_node_replace(child.cmark_node, replacement.cmark_node) == 1 else { return false }
+
+        replacement.managed = false
+        child.managed = true
+
+        return true
     }
 
     /**
@@ -432,7 +520,9 @@ extension List.Item {
      */
     @discardableResult
     public func prepend(child: Node) -> Bool {
-        return add(child) { cmark_node_prepend_child(cmark_node, child.cmark_node) }
+        guard cmark_node_prepend_child(cmark_node, child.cmark_node) == 1 else { return false }
+        child.managed = false
+        return true
     }
 
     /**
@@ -444,7 +534,11 @@ extension List.Item {
     */
     @discardableResult
     public func append(child: Node) -> Bool {
-        return add(child) { cmark_node_append_child(cmark_node, child.cmark_node) }
+        guard cmark_node_append_child(cmark_node, child.cmark_node) == 1 else { return false }
+        
+        child.managed = false
+        
+        return true
     }
 
     /**
@@ -457,7 +551,9 @@ extension List.Item {
     */
     @discardableResult
     public func insert(child: Node, before sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_before(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_before(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+        child.managed = false
+        return true
     }
 
     /**
@@ -470,7 +566,24 @@ extension List.Item {
     */
     @discardableResult
     public func insert(child: Node, after sibling: Node) -> Bool {
-        return add(child) { cmark_node_insert_after(sibling.cmark_node, child.cmark_node) }
+        guard cmark_node_insert_after(sibling.cmark_node, child.cmark_node) == 1 else { return false }
+        child.managed = false
+        return true
+    }
+
+    /**
+     Replaces a node with a specified node.
+
+     - Parameters:
+        - child: The node to replace.
+        - replacement: The node to replace the existing node.
+     - Returns: `true` if successful, otherwise `false`.
+    */
+    @discardableResult
+    public func replace(child: Node, with replacement: Node) -> Bool {
+        guard cmark_node_replace(child.cmark_node, replacement.cmark_node) == 1 else { return false }
+        replacement.managed = false
+        return true
     }
 
     /**
