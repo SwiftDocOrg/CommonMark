@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5.0] - 2021-01-14
 
+### Added
+
+- Added support for the visitor pattern,
+  by adding `protocol Visitor`/`protocol Visitable` & `enum VisitorContinueKind`.
+  #13 by @regexident.
 ### Fixed
 
 - Fixed document parsing options.
@@ -25,8 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added support for the visitor pattern,
-  by adding `protocol Visitor`/`protocol Visitable` & `enum VisitorContinueKind`.
 - Added a changelog.
   #17 by @mattt.
 
