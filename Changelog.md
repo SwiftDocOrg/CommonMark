@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `replace(child:with:)` methods for container nodes.
   #26 by @mattt.
 
+### Fixed
+
+- Fixed documentation for `List`.
+  #29 by @mattt.
+
 ## [0.5.0] - 2021-01-14
 
 ### Added
