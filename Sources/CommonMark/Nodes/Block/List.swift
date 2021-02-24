@@ -1,7 +1,7 @@
 import cmark
 
 /**
- An ordered list.
+ A list.
 
  From the [CommonMark Spec](https://spec.commonmark.org/0.29):
 
