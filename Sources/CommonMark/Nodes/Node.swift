@@ -326,14 +326,7 @@ extension Node: Equatable {
 
 extension Node: Hashable {
     public func hash(into hasher: inout Hasher) {
-        let cString = cmark_render_commonmark(cmark_node, 0, 0)!
-
-        defer {
-            free(cString)
-        }
-
-        hasher.combine(cmark_node_get_type(cmark_node).rawValue)
-        hasher.combine(cString)
+        hasher.combine(cmark_node)
     }
 }
 
