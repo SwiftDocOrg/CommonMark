@@ -6,16 +6,14 @@ final class NodeTests: XCTestCase {
     // MARK: - Equality
 
     func testNodesEquality() {
-        let firstNode = Paragraph(text: #"""
+        let text = #"""
         All human beings are born free and equal in dignity and rights.
         They are endowed with reason and conscience
         and should act towards one another in a spirit of brotherhood.
-        """#, replacingNewLinesWithBreaks: true)
-        let secondNode = Paragraph(text: #"""
-        All human beings are born free and equal in dignity and rights.
-        They are endowed with reason and conscience
-        and should act towards one another in a spirit of brotherhood.
-        """#, replacingNewLinesWithBreaks: true)
+        """#
+
+        let firstNode = Paragraph(text: "\(text)", replacingNewLinesWithBreaks: true)
+        let secondNode = Paragraph(text: "\(text)", replacingNewLinesWithBreaks: true)
 
         XCTAssertNotEqual(firstNode, secondNode)
         XCTAssertEqual(firstNode, firstNode)
@@ -40,16 +38,6 @@ final class NodeTests: XCTestCase {
 
         XCTAssertEqual(map[firstNode], "first")
         XCTAssertEqual(map[secondNode], "second")
-    }
-
-    func testHashValueConsistentAfterModification() {
-        let node = Text(literal: "Some Text")
-
-        var map = [Node: String]()
-        map[node] = "first mapping"
-        map[node] = "second mapping"
-
-        XCTAssertEqual(map[node], "second mapping")
     }
     
     func testHashValueConsistentAfterNodeIsModified() {
