@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed documentation for `List`.
   #29 by @mattt.
 
+### Changed
+
+- Changed implementation of `Hashable` conformance for `Node`.
+  Previously the hash value of a node was computed from its content.
+  Now it's computed from the opaque cmark pointer.
+  #30 by @Lukas-Stuehrk.
+
 ## [0.5.0] - 2021-01-14
 
 ### Added
