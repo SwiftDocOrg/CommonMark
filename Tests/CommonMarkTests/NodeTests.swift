@@ -41,16 +41,6 @@ final class NodeTests: XCTestCase {
         XCTAssertEqual(map[firstNode], "first")
         XCTAssertEqual(map[secondNode], "second")
     }
-
-    func testHashValueConsistentAfterModification() {
-        let node = Text(literal: "Some Text")
-
-        var map = [Node: String]()
-        map[node] = "first mapping"
-        map[node] = "second mapping"
-
-        XCTAssertEqual(map[node], "second mapping")
-    }
     
     func testHashValueConsistentAfterNodeIsModified() {
         let paragraph = Paragraph(text: #"""
