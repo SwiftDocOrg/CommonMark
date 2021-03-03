@@ -2,7 +2,7 @@ import XCTest
 import CommonMark
 
 final class DocumentTests: XCTestCase {
-    
+
     // MARK: - Creation
 
     func testDocumentCreation() throws {
@@ -312,6 +312,65 @@ final class DocumentTests: XCTestCase {
         XCTAssertEqual(actual, expected)
     }
 
+    // MARK: - Equality
+
+    func testDocumentEquality() throws {
+        let text = #"""
+        All human beings are born free and equal in dignity and rights.
+        They are endowed with reason and conscience
+        and should act towards one another in a spirit of brotherhood.
+        """#
+
+        let firstDocument = try Document("\(text)")
+        let secondDocument = try Document("\(text)")
+
+        XCTAssertNotEqual(firstDocument, secondDocument)
+        XCTAssertEqual(firstDocument, firstDocument)
+        XCTAssertEqual(secondDocument, secondDocument)
+    }
+
+    // MARK: - Hashable
+
+    func testNodesHashable() throws {
+        let text = #"""
+        All human beings are born free and equal in dignity and rights.
+        They are endowed with reason and conscience
+        and should act towards one another in a spirit of brotherhood.
+        """#
+
+        let firstDocument = try Document("\(text)")
+        let secondDocument = try Document("\(text)")
+
+        var map = [Document: String]()
+        map[firstDocument] = "first"
+        map[secondDocument] = "second"
+
+        XCTAssertEqual(map[firstDocument], "first")
+        XCTAssertEqual(map[secondDocument], "second")
+    }
+
+    func testHashValueConsistentAfterNodeIsModified() throws {
+        let document = try Document(#"""
+        All human beings are born free and equal in dignity and rights.
+        They are endowed with reason and conscience
+        """#)
+
+        var documents = Set<Document>()
+        documents.insert(document)
+
+        let paragraph = document.children.first as! Paragraph
+        paragraph.append(child: SoftLineBreak())
+        paragraph.append(child: Text(literal: "and should act towards one another in a spirit of brotherhood."))
+
+        XCTAssertTrue(documents.contains(document))
+        XCTAssertEqual(document.description,
+        #"""
+        All human beings are born free and equal in dignity and rights.
+        They are endowed with reason and conscience
+        and should act towards one another in a spirit of brotherhood.
+
+        """#)
+    }
 
     // MARK: - Coding
 
