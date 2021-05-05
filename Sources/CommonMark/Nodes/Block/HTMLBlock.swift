@@ -18,11 +18,19 @@ public final class HTMLBlock: Node {
         self.literal = literal
     }
 
-    public convenience init(literal: String, children: [Inline & Node] = []) {
-        self.init()
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
+    #if swift(>=5.4)
+    public static func wrap(
+        @ContainerOfBlocksBuilder _ body: () -> [Block & Node],
+        before: () -> String?,
+        after: () -> String?
+    ) -> [Block & Node] {
+        var blocks: [Block & Node] = []
+
+        blocks.append(HTMLBlock(literal: before()))
+        blocks.append(contentsOf: body())
+        blocks.append(HTMLBlock(literal: after()))
+
+        return blocks
     }
+    #endif
 }

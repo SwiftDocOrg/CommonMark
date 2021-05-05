@@ -27,6 +27,16 @@ import cmark
 public final class CodeBlock: Node {
     override class var cmark_node_type: cmark_node_type { return CMARK_NODE_CODE_BLOCK }
 
+    public var fenceInfo: String? {
+        get {
+            return String(cString: cmark_node_get_fence_info(cmark_node))
+        }
+
+        set {
+            cmark_node_set_fence_info(cmark_node, newValue)
+        }
+    }
+
     public convenience init(literal: String? = nil) {
         self.init()
         self.literal = literal
@@ -35,16 +45,15 @@ public final class CodeBlock: Node {
     public convenience init(literal: String, fenceInfo: String? = nil) {
         self.init()
         self.literal = literal
-        self.fenceInfo = fenceInfo
+        if let fenceInfo = fenceInfo {
+            self.fenceInfo = fenceInfo
+        }
     }
 
-    public var fenceInfo: String? {
-        get {
-            return String(cString: cmark_node_get_fence_info(cmark_node))
-        }
-
-        set {
-            cmark_node_set_fence_info(cmark_node, newValue)
+    public convenience init(fenceInfo: String? = nil, _ block: () -> String?) {
+        self.init(literal: block())
+        if let fenceInfo = fenceInfo {
+            self.fenceInfo = fenceInfo
         }
     }
 }

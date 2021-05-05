@@ -38,6 +38,17 @@ public final class Heading: Node {
 
     static let levelRange: ClosedRange<Int> = 1...6
 
+    public var level: Int {
+        get {
+            return numericCast(cmark_node_get_heading_level(cmark_node))
+        }
+
+        set {
+            precondition(Heading.levelRange.contains(newValue))
+            cmark_node_set_heading_level(cmark_node, numericCast(newValue))
+        }
+    }
+
     public convenience init(level: Int, text string: String) {
         self.init(level: level, children: [Text(literal: string)])
     }
@@ -51,14 +62,9 @@ public final class Heading: Node {
         }
     }
 
-    public var level: Int {
-        get {
-            return numericCast(cmark_node_get_heading_level(cmark_node))
-        }
-
-        set {
-            precondition(Heading.levelRange.contains(newValue))
-            cmark_node_set_heading_level(cmark_node, numericCast(newValue))
-        }
+    #if swift(>=5.4)
+    public convenience init(level: Int = 1, @ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
+        self.init(level: level, children: builder())
     }
+    #endif
 }

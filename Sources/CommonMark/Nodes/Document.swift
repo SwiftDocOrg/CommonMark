@@ -73,6 +73,12 @@ public final class Document: Node {
             append(child: child)
         }
     }
+
+    #if swift(>=5.4)
+    public convenience init(options: ParsingOptions = [], @ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
+        self.init(children: builder())
+    }
+    #endif
 }
 
 // MARK: - Comparable

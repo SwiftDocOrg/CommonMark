@@ -70,10 +70,7 @@ extension Paragraph: Visitable {
 
 extension HTMLBlock: Visitable {
     public func accept<T: Visitor>(visitor: T) {
-        let continueKind = visitor.visit(self, by: visitor.visit(htmlBlock: self))
-        if continueKind == .visitChildren {
-            self.walkVisitableChildren(with: visitor)
-        }
+        _ = visitor.visit(self, by: visitor.visit(htmlBlock: self))
         visitor.visitPost(htmlBlock: self)
     }
 }

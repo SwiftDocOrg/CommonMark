@@ -18,7 +18,7 @@ import cmark
  > followed by either a . character or a ) character.
  > (The reason for the length limit is that
  > with 10 digits we start seeing integer overflows in some browsers.)
-*/
+ */
 public final class List: Node {
     public enum Kind: Hashable {
         case bullet
@@ -32,42 +32,18 @@ public final class List: Node {
 
         init(_ cmark_node: OpaquePointer) {
             switch cmark_node_get_list_delim(cmark_node) {
-                case CMARK_PERIOD_DELIM:
-                    self = .period(numericCast(cmark_node_get_list_start(cmark_node)))
-                case CMARK_PAREN_DELIM:
-                    self = .parenthesis(numericCast(cmark_node_get_list_start(cmark_node)))
-                default:
-                    self = .none
-            }
-        }
-    }
-
-    public final class Item: Node {
-        override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
-
-        public convenience init(children: [Inline & Node] = []) {
-            self.init(children: [Paragraph(children: children)])
-        }
-
-        public convenience init(children: [Block & Node] = []) {
-            self.init()
-            guard !children.isEmpty else { return }
-            for child in children {
-                append(child: child)
+            case CMARK_PERIOD_DELIM:
+                self = .period(numericCast(cmark_node_get_list_start(cmark_node)))
+            case CMARK_PAREN_DELIM:
+                self = .parenthesis(numericCast(cmark_node_get_list_start(cmark_node)))
+            default:
+                self = .none
             }
         }
     }
 
     override class var cmark_node_type: cmark_node_type { return CMARK_NODE_LIST }
 
-    public convenience init(delimiter: Delimiter = .none, children: [List.Item] = []) {
-        self.init()
-        self.delimiter = delimiter
-        guard !children.isEmpty else { return }
-        for child in children {
-            append(child: child)
-        }
-    }
 
     public var kind: Kind {
         return delimiter == .none ? .bullet : .ordered
@@ -119,7 +95,7 @@ public final class List: Node {
      Whether the list is tight.
 
      - SeeAlso: `loose`
-    */
+     */
     public var tight: Bool {
         get {
             return cmark_node_get_list_tight(cmark_node) == 1 ? true : false
@@ -128,5 +104,54 @@ public final class List: Node {
         set {
             cmark_node_set_list_tight(cmark_node, newValue ? 1 : 0)
         }
+    }
+
+    public convenience init(delimiter: Delimiter = .none, children: [List.Item] = []) {
+        self.init()
+        self.delimiter = delimiter
+        guard !children.isEmpty else { return }
+        for child in children {
+            append(child: child)
+        }
+    }
+
+    #if swift(>=5.4)
+    public convenience init(delimiter: Delimiter = .none, tight: Bool = true, @ListBuilder _ builder: () -> [List.Item]) {
+        self.init(delimiter: delimiter, children: builder())
+        self.tight = tight
+    }
+
+    public convenience init<Values>(of values: Values, delimiter: Delimiter = .none, tight: Bool = true, @ListBuilder _ builder: (Values.Element) -> [List.Item]) where Values: Sequence {
+        self.init(delimiter: delimiter, children: values.flatMap { builder($0) })
+        self.tight = tight
+    }
+    #endif
+}
+
+extension List {
+    public final class Item: Node {
+        override class var cmark_node_type: cmark_node_type { return CMARK_NODE_ITEM }
+
+        public convenience init(children: [Inline & Node] = []) {
+            self.init(children: [Paragraph(children: children)])
+        }
+
+        public convenience init(children: [Block & Node] = []) {
+            self.init()
+            guard !children.isEmpty else { return }
+            for child in children {
+                append(child: child)
+            }
+        }
+
+        #if swift(>=5.4)
+        public convenience init(@ContainerOfInlineElementsBuilder _ builder: () -> [Inline & Node]) {
+            self.init(children: builder())
+        }
+
+        public convenience init(@ContainerOfBlocksBuilder _ builder: () -> [Block & Node]) {
+            self.init(children: builder())
+        }
+        #endif
     }
 }
